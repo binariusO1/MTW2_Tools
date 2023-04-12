@@ -1,0 +1,17 @@
+faction						TEXT
+culture						TEXT
+religion					TEXT
+symbol						TEXT
+rebel_symbol					TEXT
+primary_colour					TEXT
+secondary_colour				TEXT
+loading_logo					TEXT
+standard_index					TEXT
+logo_index					TEXT
+small_logo_index				TEXT
+triumph_value					TEXT
+custom_battle_availability			TEXT
+can_sap						TEXT
+prefers_naval_invasions				TEXT
+can_have_princess				TEXT
+has_family_tree					TEXT
