@@ -1,18 +1,17 @@
 import xlrd
-import logger
+from scripts.utils.logger import *
 from scripts.Faction import Faction, Color
 from scripts.read_excel import *
+from scripts.utils.constants import *
 
 
 class FactionsImport:
-    FILE_INPUT = "factions.xlsx"
     RANGE_START = Cell("B", 4)
     RANGE_END = Cell("AJ", 35)
     dir_path = ""
-    factionsList = []
 
     def __init__(self, dir_path):
-        logger.INFO("Run factions import script")
+        LOG_INFO("Run factions import script")
         self.dir_path = dir_path
         self.__run()
 
@@ -20,12 +19,12 @@ class FactionsImport:
         return self.factionsList
 
     def __run(self):
-        workbook = xlrd.open_workbook(self.FILE_INPUT)
+        workbook = xlrd.open_workbook(INPUT_FILE_FACTIONS)
         worksheet_name = workbook.sheet_by_index(0)
 
         titlesList = self.__collect_first_row_as_titles(worksheet_name, self.RANGE_START, self.RANGE_END)
         self.factionsList = self.__fill_faction_list(worksheet_name, self.RANGE_START, self.RANGE_END, titlesList)
-        print(len(self.factionsList))
+        assert len(self.factionsList) == MAX_NUM_FACTIONS, f"Number of factions different than: {MAX_NUM_FACTIONS}"
 
     def __fill_faction_list(self, worksheet_name, range_start, range_end, titles_list):
         factionsList = []
@@ -51,7 +50,6 @@ class FactionsImport:
                 elif attr == "is_horde" and attrList[i] == "yes":
                     faction.is_horde = True
                     is_horde = True
-                    print(is_horde)
                 elif is_horde:
                     if attr == "horde_min_units":
                         faction.dictionary['horde_min_units'] = int(float(attrList[i]))
@@ -71,6 +69,7 @@ class FactionsImport:
                         horde_unit.append(attrList[i])
                     else:
                         faction.dictionary_horde['horde_unit'] = horde_unit
+                        faction.dictionary[attr] = attrList[i]
                         is_horde = False
                 elif attr == '':
                     continue
@@ -83,5 +82,5 @@ class FactionsImport:
         titlesList = []
         for row in range(range_start.row - 1, range_start.row):
             titlesList = collect_data_from_row(worksheet_name, range_start.col, range_end.col, row)
-        print(titlesList)
+        # print(titlesList)
         return titlesList

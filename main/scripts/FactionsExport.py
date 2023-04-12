@@ -1,5 +1,5 @@
-import logger
-from scripts.filestamp import *
+from scripts.utils.logger import *
+from scripts.utils.filestamp import *
 
 
 class FactionsExport:
@@ -10,7 +10,7 @@ class FactionsExport:
     factions = []
 
     def __init__(self, data_path, dir_templates, factions):
-        logger.INFO("Run factions export script")
+        LOG_INFO("Run factions export script")
         self.data_path = data_path
         self.dir_templates = dir_templates
         self.factions = factions
@@ -71,8 +71,7 @@ class FactionsExport:
                             textToWrite = textToWrite + ", spawned_on_event"
                         newLine = line.replace("TEXT", textToWrite)
                         file.write(newLine)
-            file.write('\n')
-            file.write('\n')
+            file.write('\n\n')
             file.write(get_separator() + '\n')
 
     def __get_empty_template_faction(self):

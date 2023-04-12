@@ -1,4 +1,4 @@
-import logger
+from scripts.utils.logger import *
 
 ASCII_A = 65
 
