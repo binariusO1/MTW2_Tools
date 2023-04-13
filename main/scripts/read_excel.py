@@ -20,6 +20,14 @@ def collect_data_from_row(worksheet_name, col_start, col_end, row):
     return value
 
 
+def collect_first_row_as_titles(worksheet_name, range_start, range_end):
+    titlesList = []
+    for row in range(range_start.row - 1, range_start.row):
+        titlesList = collect_data_from_row(worksheet_name, range_start.col, range_end.col, row)
+    # print(titlesList)
+    return titlesList
+
+
 class Cell:
     col = "A"
     row = 1

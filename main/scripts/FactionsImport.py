@@ -8,21 +8,23 @@ from scripts.utils.constants import *
 class FactionsImport:
     RANGE_START = Cell("B", 4)
     RANGE_END = Cell("AJ", 35)
-    dir_path = ""
+    FACTION_SHEET_INDEX = 0
+    dir_path_script = ""
 
-    def __init__(self, dir_path):
+    def __init__(self, dir_path_script):
         LOG_INFO("Run factions import script")
-        self.dir_path = dir_path
+        self.dir_path_script = dir_path_script
+        self.factionsList = []
         self.__run()
 
-    def get_factions(self):
+    def get_list(self):
         return self.factionsList
 
     def __run(self):
-        workbook = xlrd.open_workbook(INPUT_FILE_FACTIONS)
-        worksheet_name = workbook.sheet_by_index(0)
+        workbook = xlrd.open_workbook(INPUT_XML_FACTIONS)
+        worksheet_name = workbook.sheet_by_index(self.FACTION_SHEET_INDEX)
 
-        titlesList = self.__collect_first_row_as_titles(worksheet_name, self.RANGE_START, self.RANGE_END)
+        titlesList = collect_first_row_as_titles(worksheet_name, self.RANGE_START, self.RANGE_END)
         self.factionsList = self.__fill_faction_list(worksheet_name, self.RANGE_START, self.RANGE_END, titlesList)
         assert len(self.factionsList) == MAX_NUM_FACTIONS, f"Number of factions different than: {MAX_NUM_FACTIONS}"
 
@@ -77,10 +79,3 @@ class FactionsImport:
                     faction.dictionary[attr] = attrList[i]
             factionsList.append(faction)
         return factionsList
-
-    def __collect_first_row_as_titles(self, worksheet_name, range_start, range_end):
-        titlesList = []
-        for row in range(range_start.row - 1, range_start.row):
-            titlesList = collect_data_from_row(worksheet_name, range_start.col, range_end.col, row)
-        # print(titlesList)
-        return titlesList

@@ -3,8 +3,8 @@ from scripts.utils.filestamp import *
 
 
 class FactionsExport:
-    FILE_NAME = "descr_sm_factions.txt"
-    FILE_NAME_HORDE = "descr_sm_factions_horde.txt"
+    TEMPLATE_NAME = "descr_sm_factions.txt"
+    TEMPLATE_NAME_HORDE = "descr_sm_factions_horde.txt"
     data_path = ""
     dir_templates = ""
     factions = []
@@ -19,7 +19,7 @@ class FactionsExport:
 
     def __write_file(self):
         # print(self.data_path)
-        file = open(self.data_path + self.FILE_NAME, "w", encoding="utf8")
+        file = open(self.data_path + self.TEMPLATE_NAME, "w", encoding="utf8")
 
         self.__write_filestamp(file)
         self.__write_factions(file)
@@ -76,7 +76,7 @@ class FactionsExport:
 
     def __get_empty_template_faction(self):
         template_faction = []
-        file = open(self.dir_templates + self.FILE_NAME, "r", encoding="utf8")
+        file = open(self.dir_templates + self.TEMPLATE_NAME, "r", encoding="utf8")
         for line in file:
             template_faction.append(line)
         # print(self.template_faction)
@@ -85,7 +85,7 @@ class FactionsExport:
 
     def __get_empty_template_horde_faction(self):
         template_faction = []
-        file = open(self.dir_templates + self.FILE_NAME_HORDE, "r", encoding="utf8")
+        file = open(self.dir_templates + self.TEMPLATE_NAME_HORDE, "r", encoding="utf8")
         for line in file:
             template_faction.append(line)
         # print(self.template_faction)

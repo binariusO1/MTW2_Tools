@@ -1,0 +1,9 @@
+TEXT_Province
+	TEXT
+	TEXT
+	TEXT
+	1 2 3
+	TEXT
+	5
+	1
+	religions { catholic 1 orthodox 2 islam 3 pagan 4 heretic 5 }

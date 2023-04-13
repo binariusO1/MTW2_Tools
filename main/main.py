@@ -16,6 +16,8 @@ from scripts.utils.logger import *
 from scripts.FactionsData import *
 from scripts.FactionsImport import *
 from scripts.FactionsExport import *
+from scripts.RegionsData import *
+from scripts.RegionsImport import *
 
 
 def run_scripts():
@@ -23,9 +25,10 @@ def run_scripts():
     # f = os.path.join(PATH_SCRIPTS, filename)
     # if os.path.isfile(f):
     #    print(f)
-    factionsData = FactionsData(FactionsImport(DIR_PATH_MAIN).get_factions())
+    factionsData = FactionsData(FactionsImport(DIR_PATH_MAIN).get_list())
     FactionsExport(DATA_PATH, DIR_TEMPLATES, factionsData.factionsDataList)
 
+    regionsData = RegionsData(RegionsImport(DIR_PATH_MAIN).get_list())
 
 if __name__ == '__main__':
     LOG_INFO("Run main")
