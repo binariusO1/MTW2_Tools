@@ -1,5 +1,5 @@
-DIR_DATA = "data"
-DIR_BASE = "data" + "\\" + "world" + "\\" + "maps" + "\\" + "base"
+DIR_DATA = "data" + "\\"
+DIR_BASE = "data" + "\\" + "world" + "\\" + "maps" + "\\" + "base" + "\\"
 DIR_IMPERIAL_CAMPAIGN= "data" + "\\" + "world" + "\\" + "maps" + "\\" + "campaign" + "\\" + "imperial_campaign"
 DIR_SCRIPTS = "scripts" + "\\"
 DIR_UTILS = "utils" + "\\"

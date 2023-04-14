@@ -1,0 +1,29 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Generated for SSHIP by python multi tool. Version: 0.1 Author: @StaefanBatory (binarius0110@gmail.com)
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Tbilisi_Province_Province
+	Tbilisi
+	georgia
+	Georgian_Capital_Rebels
+	199 31 143
+	georgia, capital, river, silk_road,
+	5
+	3
+	religions { catholic 0 orthodox 55 islam 15 pagan 15 heretic 15 }
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Konya_Province_Province
+	Konya
+	rum
+	Anatolian_Capital_Rebels
+	45 163 92
+	rum, capital, no_pirates,
+	5
+	3
+	religions { catholic 0 orthodox 60 islam 22 pagan 8 heretic 10 }
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -2,8 +2,8 @@ TEXT_Province
 	TEXT
 	TEXT
 	TEXT
-	1 2 3
+	NUMS
 	TEXT
-	5
-	1
-	religions { catholic 1 orthodox 2 islam 3 pagan 4 heretic 5 }
+	NUM
+	NUM
+	TEXT

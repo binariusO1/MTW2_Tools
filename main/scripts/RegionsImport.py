@@ -35,7 +35,7 @@ class RegionsImport:
             region = Region()
 
             is_hidden_resource = False
-            hidden_resource = []
+            hidden_resources = []
             for i, attr in enumerate(titles_list):
                 value = attrList[i]
                 if attr == "r1":
@@ -58,12 +58,15 @@ class RegionsImport:
                     is_hidden_resource = True
                 elif attr == "hidden_resources_end":
                     is_hidden_resource = False
-                    region.descr_regions['hidden_resource'] = hidden_resource
+                    print(hidden_resources)
+                    region.descr_regions['hidden_resources'] = hidden_resources
                 elif is_hidden_resource:
                     if value == "yes":
-                        hidden_resource.append(attr)
+                        hidden_resources.append(attr)
+                    elif value == "":
+                        continue
                     else:
-                        hidden_resource.append(value)
+                        hidden_resources.append(value)
                 elif attr == '':
                     continue
                 else:
