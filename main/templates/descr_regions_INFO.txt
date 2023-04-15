@@ -1,3 +1,92 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
-; some info
+; Regions list with settlements, rebels types, hidden resources, fertility and religions
 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; STRUCTURE OF CODE IN THIS FILE:
+;   region name
+;   settlement name
+;   faction creator (perhaps no effect, although in the past I've seen that it "determines stratmap appearance of the settlement" but it is defined in the "descr_strat" (it deteremines appearance and to which the people of this province will be most loyal)
+;   rebel type (determined in descr_rebel_factions.txt)
+;   color code (RGB)
+;   hidden resources (no comma at the end; trading resources (defined in descr_strat file) are unrelated)
+;   triumph value (left over from RTW unless someone can tell me otherwise) has to be 5, otherwise you'll get a crash
+;   fertility (base pop increase, 5% per point)
+;   religions – must total 100 (percent), otherwise you'll get a crash
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; IF YOU'D LIKE TO MANIPULATE THE REGIONS OR SETTLEMENTS YOU NEED TO PAY ATTENTION TO THE FOLLOWING FILES:
+; 1 - descr_regions (data below)
+; 2 - map_regions: the color of the region, black pixel (settlement), white pixel (port, if present)
+; 3 - descr_strat - the settlement's entry
+; 4 - descr_win_descriptions - may be listed
+; 5 - descr_mercenaries - may be listed
+; 6 - descr_sounds_music_types - may be listed
+; 7 - map.rwm - delete to generate a new file at game start
+; 8 - imperial_campaign_regions_and_settlement_names - settlement and region name
+; 9 - script.txt - there are scripts that use coordinates, in particular ;---------- Turmoil script for each of 199 settlements (look for "fire"), and also Great fires scripts.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; HIDDEN RESOURCES' effects in the SSHIP (determined in the other files):
+;
+; - factional - recruitment of units (most of provinces have 1 faction, but some have more);
+; --- cumans (in 7 provinces) signify deep steppes and have broader effects.
+; --- pisa, venice - recruitment of merchants from lvl4 sea trade buildings.
+;
+; - capital - recruitment of merchants, priests, diplomats and other agents from lvl 1 buildings.
+; (keep in mind that for the AI moving the captial is hardcoded: it will allways move to the optimum position (trade + public order)
+; - unique1, unique2 - these HR are used for distinguishing provinces (see below).
+;
+; - hanse - enables building Hanseatic building chain.
+; - slavic - 34 regions were in the Early Middle ages one could levy slavic units (this HR is used in EDB)
+;
+; - river - in regions were river ports could be built, hence:
+; --- historically in some provinces there were rivers but there were no river ports - no such HR
+; --- it is NOT present in the steppes even if there was a big river
+; --- it is present if there were many medium-sized rivers and the creation of networks was possible
+; -- effects: (1) river ports can be build (2) population growth added to some other buildings: markets, higher-level farms.
+;
+; - chapter houses - building chapter houses of the relevant order;
+; - flanders - recruitment of merchants from lvl4 sea trade buildings; recruitment of certain infantry units; availablity of building Polders.
+; - tartars - proxy of the presence of the steppes. It enables building Grasslands (and recruitment of the Cuman units), while preventing builing paved roads (with hidden resource cumans: also dirt roads). It plays important role in defining fertility provided by the farm building chain.
+; - berber - provinces in Maghrib: for units in EDB
+; - africa - provinces in (Black) Africa: for units in EDB
+
+; Hard coded effects:
+; - crusade jihad - crusade and jihad targets for the AI
+; - horde_target - horde target for the AI
+; - no_pirates - prevents spawning pirates also in the lakes
+; - no_brigands - no rebel armies spawn (afaik), not used in the SSHIP
+
+; Attention: resources deleted from the previous versions of the SSHIP: palermo, 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; UNIQUE COMBINATIONS OF HIDDEN RESOURCES IDENTIFY PROVINCES IN THE EDB:
+; --- in particular, resources: capital, unique1 and unique2 are used only to this end
+; --- remember that in EDB it's difficult to use "not hidden_resource X" condition (ie only one can be used - see explanation in EDB)
+; --- examples in SSHIP:
+; * London: england capital
+; * Ghent: france flanders
+; * Lubeck: hre poland
+; * Bari: sicily unique1 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; FERTILITY (0.5% population growth per point)
+; In general, fertility has very strong impact on the small settlements and weak on big ones. Should be applied in small doses, it's better to add growth through the buildings.
+; Convention for the SSHIP
+; 0 - unferitile: very cold climate or no arable lands (ie rocky, marshy, plenty semi- and deserts).
+; 1 - not feritile: dense woods, heavy soils, cold climate; or mostly mountains.
+; 2 - average: woods, heavy soils, but some water; or hills with some rain.
+; 3 - good: light woods, good soils, rivers, moderately hilly.
+; 4 - feritile: good soils, very pluvial, good climate, traditions of good agriculture and transport, long tradition of advanced agriculture.
+; more - extremely good conditions for farming (eg. the Nile delta, Mesopotamia); OR a dominant position inducing stable flow of food from the other regions (eg. London, Paris, Palermo).
+;
+; In the SSHIP hidden resource river provides additional growth for some buildings and enables river ports - so the presence of the rivers should not be taken into account while deciding on the value of fertility.
+; Mind also the hidden_resource desert - it has important impact in EDB on the possiblity to build farms.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

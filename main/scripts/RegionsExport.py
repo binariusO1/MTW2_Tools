@@ -33,6 +33,7 @@ class RegionsExport:
         file = open(self.data_path + self.TEMPLATE_NAME, "w", encoding="utf8")
 
         self.__write_filestamp(file)
+        self.__write_info(file, self.TEMPLATE_NAME_INFO)
         self.__write_regions(file)
 
         file.close()
@@ -52,11 +53,11 @@ class RegionsExport:
                     newLine = line.replace("NUMS", colour)
                     file.write(newLine)
                 elif i == 5:
-                    print(region.descr_regions[key])
+                    # print(region.descr_regions[key])
                     text = ""
                     for resource in region.descr_regions[key]:
                         text = text + resource + ", "
-                    file.write('\t'+text[0:-1]+'\n')
+                    file.write('\t' + text[0:-2] + '\n')
                 elif i == 8:
                     catholic = region.descr_regions[key].catholic
                     orthodox = region.descr_regions[key].orthodox
@@ -64,7 +65,8 @@ class RegionsExport:
                     pagan = region.descr_regions[key].pagan
                     heretic = region.descr_regions[key].heretic
                     religions = "religions { catholic " + str(int(catholic)) + " orthodox " + str(int(orthodox)) \
-                                + " islam " + str(int(islam)) + " pagan " + str(int(pagan)) + " heretic " + str(int(heretic)) + " }"
+                                + " islam " + str(int(islam)) + " pagan " + str(int(pagan)) + " heretic " + str(
+                        int(heretic)) + " }"
                     newLine = line.replace("TEXT", religions)
                     file.write(newLine)
                 else:
@@ -76,13 +78,21 @@ class RegionsExport:
                         newLine = line.replace("TEXT", textToWrite)
                         file.write(newLine)
 
-            file.write('\n\n')
-            file.write(get_separator() + '\n')
+            # file.write('\n\n')
+            # file.write(get_separator() + '\n')
 
     def __write_filestamp(self, file):
         for line in get_filestamp():
-            self.__get_empty_template_region()
             file.write(line + '\n')
+
+    def __write_info(self, file, info_file_name):
+        info_file = open(self.dir_templates + info_file_name, "r", encoding="utf8")
+        file.write('\n')
+        for line in info_file:
+            file.write(line)
+        file.write('\n')
+        info_file.close()
+
 
     def __get_empty_template_region(self):
         template_region = []

@@ -1,13 +1,13 @@
 import xlrd
 from scripts.utils.logger import *
-from scripts.Region import Region, Color
-from scripts.read_excel import *
+from scripts.data.Region import Region, Color
+from scripts.utils.read_excel import *
 from scripts.utils.constants import *
 
 
 class RegionsImport:
     RANGE_START = Cell("B", 5)
-    RANGE_END = Cell("AW", 7)
+    RANGE_END = Cell("AY", 204)
     REGION_SHEET_INDEX = 0
     dir_path_script = ""
 
@@ -55,10 +55,11 @@ class RegionsImport:
                 elif attr == "heretic":
                     region.descr_regions['religions'].heretic = int(float(value))
                 elif attr == "hidden_resources_start":
+                    # print('start:', hidden_resources)
                     is_hidden_resource = True
                 elif attr == "hidden_resources_end":
                     is_hidden_resource = False
-                    print(hidden_resources)
+                    # print('end:', hidden_resources)
                     region.descr_regions['hidden_resources'] = hidden_resources
                 elif is_hidden_resource:
                     if value == "yes":

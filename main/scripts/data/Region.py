@@ -1,5 +1,5 @@
-from scripts.Color import *
-from scripts.Religion import *
+from scripts.items.Color import *
+from scripts.items.Religion import *
 
 
 class Region:

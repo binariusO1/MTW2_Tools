@@ -1,5 +1,5 @@
 import re
-from scripts.Color import *
+from scripts.items.Color import *
 
 
 class Faction:

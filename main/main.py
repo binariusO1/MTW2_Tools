@@ -13,10 +13,10 @@ PATH_UTILS = PATH_SCRIPTS + DIR_UTILS
 sys.path.insert(1, PATH_UTILS)
 
 from scripts.utils.logger import *
-from scripts.FactionsData import *
+from scripts.data.FactionsData import *
 from scripts.FactionsImport import *
 from scripts.FactionsExport import *
-from scripts.RegionsData import *
+from scripts.data.RegionsData import *
 from scripts.RegionsImport import *
 from scripts.RegionsExport import *
 

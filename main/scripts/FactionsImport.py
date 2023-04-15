@@ -1,7 +1,7 @@
 import xlrd
 from scripts.utils.logger import *
-from scripts.Faction import Faction, Color
-from scripts.read_excel import *
+from scripts.data.Faction import Faction, Color
+from scripts.utils.read_excel import *
 from scripts.utils.constants import *
 
 

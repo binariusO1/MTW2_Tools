@@ -4,26 +4,1887 @@
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-Tbilisi_Province_Province
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Regions list with settlements, rebels types, hidden resources, fertility and religions
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; STRUCTURE OF CODE IN THIS FILE:
+;   region name
+;   settlement name
+;   faction creator (perhaps no effect, although in the past I've seen that it "determines stratmap appearance of the settlement" but it is defined in the "descr_strat" (it deteremines appearance and to which the people of this province will be most loyal)
+;   rebel type (determined in descr_rebel_factions.txt)
+;   color code (RGB)
+;   hidden resources (no comma at the end; trading resources (defined in descr_strat file) are unrelated)
+;   triumph value (left over from RTW unless someone can tell me otherwise) has to be 5, otherwise you'll get a crash
+;   fertility (base pop increase, 5% per point)
+;   religions – must total 100 (percent), otherwise you'll get a crash
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; IF YOU'D LIKE TO MANIPULATE THE REGIONS OR SETTLEMENTS YOU NEED TO PAY ATTENTION TO THE FOLLOWING FILES:
+; 1 - descr_regions (data below)
+; 2 - map_regions: the color of the region, black pixel (settlement), white pixel (port, if present)
+; 3 - descr_strat - the settlement's entry
+; 4 - descr_win_descriptions - may be listed
+; 5 - descr_mercenaries - may be listed
+; 6 - descr_sounds_music_types - may be listed
+; 7 - map.rwm - delete to generate a new file at game start
+; 8 - imperial_campaign_regions_and_settlement_names - settlement and region name
+; 9 - script.txt - there are scripts that use coordinates, in particular ;---------- Turmoil script for each of 199 settlements (look for "fire"), and also Great fires scripts.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; HIDDEN RESOURCES' effects in the SSHIP (determined in the other files):
+;
+; - factional - recruitment of units (most of provinces have 1 faction, but some have more);
+; --- cumans (in 7 provinces) signify deep steppes and have broader effects.
+; --- pisa, venice - recruitment of merchants from lvl4 sea trade buildings.
+;
+; - capital - recruitment of merchants, priests, diplomats and other agents from lvl 1 buildings.
+; (keep in mind that for the AI moving the captial is hardcoded: it will allways move to the optimum position (trade + public order)
+; - unique1, unique2 - these HR are used for distinguishing provinces (see below).
+;
+; - hanse - enables building Hanseatic building chain.
+; - slavic - 34 regions were in the Early Middle ages one could levy slavic units (this HR is used in EDB)
+;
+; - river - in regions were river ports could be built, hence:
+; --- historically in some provinces there were rivers but there were no river ports - no such HR
+; --- it is NOT present in the steppes even if there was a big river
+; --- it is present if there were many medium-sized rivers and the creation of networks was possible
+; -- effects: (1) river ports can be build (2) population growth added to some other buildings: markets, higher-level farms.
+;
+; - chapter houses - building chapter houses of the relevant order;
+; - flanders - recruitment of merchants from lvl4 sea trade buildings; recruitment of certain infantry units; availablity of building Polders.
+; - tartars - proxy of the presence of the steppes. It enables building Grasslands (and recruitment of the Cuman units), while preventing builing paved roads (with hidden resource cumans: also dirt roads). It plays important role in defining fertility provided by the farm building chain.
+; - berber - provinces in Maghrib: for units in EDB
+; - africa - provinces in (Black) Africa: for units in EDB
+
+; Hard coded effects:
+; - crusade jihad - crusade and jihad targets for the AI
+; - horde_target - horde target for the AI
+; - no_pirates - prevents spawning pirates also in the lakes
+; - no_brigands - no rebel armies spawn (afaik), not used in the SSHIP
+
+; Attention: resources deleted from the previous versions of the SSHIP: palermo, 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; UNIQUE COMBINATIONS OF HIDDEN RESOURCES IDENTIFY PROVINCES IN THE EDB:
+; --- in particular, resources: capital, unique1 and unique2 are used only to this end
+; --- remember that in EDB it's difficult to use "not hidden_resource X" condition (ie only one can be used - see explanation in EDB)
+; --- examples in SSHIP:
+; * London: england capital
+; * Ghent: france flanders
+; * Lubeck: hre poland
+; * Bari: sicily unique1 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; FERTILITY (0.5% population growth per point)
+; In general, fertility has very strong impact on the small settlements and weak on big ones. Should be applied in small doses, it's better to add growth through the buildings.
+; Convention for the SSHIP
+; 0 - unferitile: very cold climate or no arable lands (ie rocky, marshy, plenty semi- and deserts).
+; 1 - not feritile: dense woods, heavy soils, cold climate; or mostly mountains.
+; 2 - average: woods, heavy soils, but some water; or hills with some rain.
+; 3 - good: light woods, good soils, rivers, moderately hilly.
+; 4 - feritile: good soils, very pluvial, good climate, traditions of good agriculture and transport, long tradition of advanced agriculture.
+; more - extremely good conditions for farming (eg. the Nile delta, Mesopotamia); OR a dominant position inducing stable flow of food from the other regions (eg. London, Paris, Palermo).
+;
+; In the SSHIP hidden resource river provides additional growth for some buildings and enables river ports - so the presence of the rivers should not be taken into account while deciding on the value of fertility.
+; Mind also the hidden_resource desert - it has important impact in EDB on the possiblity to build farms.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Tbilisi_Province
 	Tbilisi
 	georgia
 	Georgian_Capital_Rebels
 	199 31 143
-	georgia, capital, river, silk_road,
+	georgia, capital, river, silk_road
 	5
 	3
 	religions { catholic 0 orthodox 55 islam 15 pagan 15 heretic 15 }
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-Konya_Province_Province
+Konya_Province
 	Konya
 	rum
 	Anatolian_Capital_Rebels
 	45 163 92
-	rum, capital, no_pirates,
+	rum, capital, no_pirates
 	5
 	3
 	religions { catholic 0 orthodox 60 islam 22 pagan 8 heretic 10 }
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Krakow_Province
+	Krakow
+	poland
+	Polish_Capital_Rebels
+	177 78 58
+	poland, capital, river, slavic
+	5
+	4
+	religions { catholic 45 orthodox 5 islam 0 pagan 48 heretic 2 }
+Coimbra_Province
+	Coimbra
+	portugal
+	Portuguese_Capital_Rebels
+	53 204 103
+	portugal, capital, templars_chapter_house, river
+	5
+	2
+	religions { catholic 80 orthodox 0 islam 5 pagan 0 heretic 15 }
+Paris_Province
+	Paris
+	france
+	French_Capital_Rebels
+	203 202 201
+	france, capital, templars_chapter_house, st_johns_chapter_house, river
+	5
+	6
+	religions { catholic 90 orthodox 0 islam 0 pagan 5 heretic 5 }
+Jerusalem_Province
+	Jerusalem
+	jerusalem
+	Arab_Capital_Rebels
+	244 13 29
+	jerusalem, capital, no_pirates, templars_chapter_house, teutonic_knights_chapter_house, st_johns_chapter_house, crusade, jihad, crusader
+	5
+	2
+	religions { catholic 50 orthodox 25 islam 15 pagan 5 heretic 5 }
+Esztergom_Province
+	Esztergom
+	hungary
+	Magyar_Capital_Rebels
+	33 100 131
+	hungary, capital, river, slavic
+	5
+	4
+	religions { catholic 80 orthodox 5 islam 0 pagan 10 heretic 5 }
+Marrakesh_Province
+	Marrakesh
+	moors
+	Berber_Capital_Rebels
+	202 126 17
+	moors, capital, caravan, africa, berber
+	5
+	2
+	religions { catholic 0 orthodox 0 islam 90 pagan 5 heretic 5 }
+Palermo_Province
+	Palermo
+	sicily
+	Island_Capital_Rebels
+	177 142 58
+	sicily, capital, teutonic_knights_chapter_house
+	5
+	9
+	religions { catholic 25 orthodox 34 islam 33 pagan 3 heretic 5 }
+Burgos_Province
+	Burgos
+	spain
+	Castilian_Core_Rebels
+	105 62 145
+	spain, capital
+	5
+	2
+	religions { catholic 70 orthodox 0 islam 15 pagan 0 heretic 15 }
+Kernave_Province
+	Kernave
+	lithuania
+	Lithuanian_Capital_Rebels
+	43 86 40
+	lithuania, capital, river, hanse, prussia
+	5
+	1
+	religions { catholic 2 orthodox 15 islam 0 pagan 73 heretic 10 }
+Zaragoza_Province
+	Zaragoza
+	aragon
+	Aragonese_Capital_Rebels
+	13 196 198
+	aragon, capital, templars_chapter_house, river
+	5
+	4
+	religions { catholic 55 orthodox 0 islam 35 pagan 0 heretic 10 }
+Frankfurt_Province
+	Frankfurt
+	hre
+	German_Capital_Rebels
+	63 232 41
+	hre, capital, teutonic_knights_chapter_house, river
+	5
+	4
+	religions { catholic 85 orthodox 0 islam 0 pagan 0 heretic 15 }
+Edinburgh_Province
+	Edinburgh
+	scotland
+	Scots_Capital_Rebels
+	220 225 255
+	scotland, capital
+	5
+	2
+	religions { catholic 70 orthodox 0 islam 0 pagan 5 heretic 25 }
+Baghdad_Province
+	Baghdad
+	abbasid
+	Abbasid_Capital_Rebels
+	177 58 167
+	abbasid, turks, capital, no_pirates, horde_target, river, silk_road, caravan
+	5
+	9
+	religions { catholic 0 orthodox 10 islam 80 pagan 5 heretic 5 }
+Cairo_Province
+	Cairo
+	egypt
+	Fatimid_Capital_Rebels
+	122 13 244
+	egypt, capital, river, caravan, africa
+	5
+	9
+	religions { catholic 3 orthodox 35 islam 57 pagan 3 heretic 2 }
+Neyshabur_Province
+	Neyshabur
+	turks
+	Neyshabur_Rebels
+	56 139 23
+	turks, persia, silk_road
+	5
+	2
+	religions { catholic 0 orthodox 0 islam 85 pagan 5 heretic 10 }
+Aleppo_Province
+	Aleppo
+	zengid
+	Seljuk_Rebels
+	175 171 244
+	zengid, no_pirates, crusade, jihad
+	5
+	4
+	religions { catholic 0 orthodox 20 islam 70 pagan 5 heretic 5 }
+Sarkel_Province
+	Sarkel
+	cumans
+	Steppe_Core_Rebels
+	177 170 58
+	cumans, no_pirates, tartars
+	5
+	1
+	religions { catholic 0 orthodox 18 islam 30 pagan 50 heretic 2 }
+London_Province
+	London
+	england
+	English_Capital_Rebels
+	232 41 46
+	england, capital, templars_chapter_house, st_johns_chapter_house, river, hanse
+	5
+	5
+	religions { catholic 90 orthodox 0 islam 0 pagan 5 heretic 5 }
+Novgorod_Province
+	Novgorod
+	russia
+	Rus_Capital_Rebels
+	241 211 25
+	russia, capital, no_pirates, hanse, slavic
+	5
+	3
+	religions { catholic 6 orthodox 70 islam 2 pagan 20 heretic 2 }
+Roskilde_Province
+	Roskilde
+	denmark
+	Danish_Core_Rebels
+	49 171 164
+	denmark, st_johns_chapter_house, hanse
+	5
+	1
+	religions { catholic 70 orthodox 0 islam 0 pagan 20 heretic 10 }
+Kiev_Province
+	Kiev
+	kievan_rus
+	Rus_Capital_Rebels
+	33 131 116
+	kievan_rus, capital, river, slavic
+	5
+	4
+	religions { catholic 2 orthodox 74 islam 2 pagan 20 heretic 2 }
+Oslo_Province
+	Oslo
+	norway
+	Norwegian_Core_Rebels
+	255 180 190
+	norway, river, hanse
+	5
+	1
+	religions { catholic 55 orthodox 0 islam 0 pagan 40 heretic 5 }
+Rome_Province
+	Rome
+	papal_states
+	Italian_Capital_Rebels
+	52 13 198
+	papal_states, capital, no_pirates, templars_chapter_house, teutonic_knights_chapter_house, st_johns_chapter_house, crusade, river
+	5
+	5
+	religions { catholic 85 orthodox 10 islam 0 pagan 0 heretic 5 }
+Constantinople_Province
+	Constantinople
+	byzantium
+	Greek_Capital_Rebels
+	118 131 33
+	byzantium, capital, crusade, horde_target, Constantinople
+	5
+	10
+	religions { catholic 2 orthodox 90 islam 1 pagan 2 heretic 5 }
+Aberdeen_Province
+	Aberdeen
+	scotland
+	Scots_Core_Rebels
+	20 25 225
+	scotland, no_pirates, unique1
+	5
+	0
+	religions { catholic 55 orthodox 0 islam 0 pagan 15 heretic 30 }
+Troyes_Province
+	Troyes
+	france
+	French_Core_Rebels
+	252 245 42
+	france, templars_chapter_house, river
+	5
+	4
+	religions { catholic 84 orthodox 0 islam 0 pagan 4 heretic 12 }
+Rustov_Province
+	Rustov
+	russia
+	Rus_Rebels
+	58 89 177
+	russia, no_pirates, river
+	5
+	1
+	religions { catholic 10 orthodox 60 islam 6 pagan 24 heretic 0 }
+Bulgar_Province
+	Bulgar
+	cumans
+	V_Bulgar_Rebels
+	58 177 75
+	cumans, no_pirates, slavemarket, tartars, unique1
+	5
+	1
+	religions { catholic 0 orthodox 25 islam 55 pagan 10 heretic 10 }
+Riga_Province
+	Riga
+	lithuania
+	Livonian_Rebels
+	58 177 95
+	lithuania, no_pirates, teutonic_knights_chapter_house, horde_target, river, hanse, prussia, unique2
+	5
+	1
+	religions { catholic 20 orthodox 10 islam 0 pagan 65 heretic 5 }
+Ribe_Province
+	Ribe
+	denmark
+	Danish_Rebels
+	232 41 55
+	denmark, no_pirates, hanse, unique1
+	5
+	1
+	religions { catholic 75 orthodox 5 islam 0 pagan 17 heretic 3 }
+Smolensk_Province
+	Smolensk
+	kievan_rus
+	Rus_Core_Rebels
+	177 110 83
+	russia, river, slavic
+	5
+	3
+	religions { catholic 2 orthodox 64 islam 2 pagan 30 heretic 2 }
+Dublin_Province
+	Dublin
+	scotland
+	Irish_Rebels
+	10 232 10
+	scotland, no_pirates, templars_chapter_house, unique2
+	5
+	1
+	religions { catholic 30 orthodox 0 islam 0 pagan 15 heretic 55 }
+Reggio_Province
+	Reggio
+	sicily
+	Island_Core_Rebels
+	0 0 121
+	sicily, st_johns_chapter_house
+	5
+	2
+	religions { catholic 25 orthodox 52 islam 15 pagan 3 heretic 5 }
+Skadar_Province
+	Skadar
+	serbia
+	Serbian_Rebels
+	131 33 125
+	serbia, slavic
+	5
+	1
+	religions { catholic 20 orthodox 50 islam 0 pagan 8 heretic 22 }
+York_Province
+	York
+	england
+	English_Rebels
+	230 30 35
+	england, templars_chapter_house, river, unique2
+	5
+	2
+	religions { catholic 85 orthodox 0 islam 0 pagan 8 heretic 7 }
+Ryazan_Province
+	Ryazan
+	kievan_rus
+	Rus_Rebels
+	177 58 83
+	kievan_rus, river, tartars, unique2
+	5
+	1
+	religions { catholic 2 orthodox 70 islam 6 pagan 20 heretic 2 }
+Caernarvon_Province
+	Caernarvon
+	england
+	Welsh_Rebels
+	41 232 63
+	england
+	5
+	1
+	religions { catholic 60 orthodox 0 islam 0 pagan 17 heretic 23 }
+Gdansk_Province
+	Gdansk
+	poland
+	Polish_Core_Rebels
+	41 41 203
+	poland, teutonic_knights_chapter_house, river, hanse, prussia, slavic
+	5
+	2
+	religions { catholic 40 orthodox 0 islam 0 pagan 58 heretic 2 }
+Lincoln_Province
+	Lincoln
+	england
+	English_Core_Rebels
+	232 41 198
+	england, templars_chapter_house, river, unique1
+	5
+	3
+	religions { catholic 85 orthodox 0 islam 0 pagan 5 heretic 10 }
+Wroclaw_Province
+	Wroclaw
+	poland
+	Polish_Rebels
+	203 41 232
+	poland, st_johns_chapter_house, river, slavic, unique2
+	5
+	3
+	religions { catholic 48 orthodox 0 islam 0 pagan 50 heretic 2 }
+Bremen_Province
+	Bremen
+	hre
+	German_Rebels
+	232 198 41
+	hre, river, hanse
+	5
+	3
+	religions { catholic 75 orthodox 0 islam 0 pagan 7 heretic 18 }
+Rouen_Province
+	Rouen
+	england
+	English_Core_Rebels
+	41 162 232
+	england, france, no_pirates, templars_chapter_house, river
+	5
+	4
+	religions { catholic 80 orthodox 0 islam 0 pagan 4 heretic 16 }
+Hamburg_Province
+	Hamburg
+	hre
+	German_Core_Rebels
+	64 41 52
+	hre, teutonic_knights_chapter_house, river, hanse, slavic, unique1
+	5
+	2
+	religions { catholic 70 orthodox 0 islam 0 pagan 20 heretic 10 }
+Halych_Province
+	Halych
+	kievan_rus
+	Rus_Rebels
+	78 232 51
+	kievan_rus, river, slavic
+	5
+	3
+	religions { catholic 35 orthodox 40 islam 0 pagan 20 heretic 5 }
+Speyer_Province
+	Speyer
+	hre
+	German_Core_Rebels
+	141 160 233
+	hre, teutonic_knights_chapter_house, st_johns_chapter_house, river, unique2
+	5
+	4
+	religions { catholic 90 orthodox 0 islam 0 pagan 2 heretic 8 }
+Leuven_Province
+	Leuven
+	hre
+	Flemish_Rebels
+	232 90 41
+	hre, teutonic_knights_chapter_house, river, flanders
+	5
+	4
+	religions { catholic 85 orthodox 0 islam 0 pagan 4 heretic 11 }
+Trier_Province
+	Trier
+	hre
+	Burgundian_Rebels
+	72 41 232
+	hre, st_johns_chapter_house, river
+	5
+	4
+	religions { catholic 85 orthodox 0 islam 0 pagan 5 heretic 10 }
+Norwich_Province
+	Norwich
+	england
+	English_Core_Rebels
+	170 170 11
+	england, templars_chapter_house, hanse
+	5
+	3
+	religions { catholic 85 orthodox 0 islam 0 pagan 8 heretic 7 }
+Prague_Province
+	Prague
+	hre
+	Bohemian_Capital_Rebels
+	58 150 177
+	hre, teutonic_knights_chapter_house, st_johns_chapter_house, river, slavic
+	5
+	4
+	religions { catholic 50 orthodox 2 islam 0 pagan 43 heretic 5 }
+Rheims_Province
+	Rheims
+	france
+	French_Core_Rebels
+	31 75 37
+	france, river
+	5
+	4
+	religions { catholic 85 orthodox 0 islam 0 pagan 5 heretic 10 }
+Rennes_Province
+	Rennes
+	england
+	Rennes_Rebels
+	232 41 135
+	france
+	5
+	1
+	religions { catholic 90 orthodox 0 islam 0 pagan 2 heretic 8 }
+Nuremburg_Province
+	Nuremburg
+	hre
+	German_Core_Rebels
+	230 41 232
+	hre, river, slavic
+	5
+	2
+	religions { catholic 85 orthodox 1 islam 0 pagan 6 heretic 8 }
+Basel_Province
+	Basel
+	hre
+	German_Core_Rebels
+	253 180 10
+	hre, no_pirates, st_johns_chapter_house
+	5
+	2
+	religions { catholic 75 orthodox 0 islam 0 pagan 4 heretic 21 }
+Iasi_Province
+	Iasi
+	cumans
+	Wallachian_Rebels
+	131 33 38
+	hungary, river, tartars
+	5
+	2
+	religions { catholic 5 orthodox 10 islam 0 pagan 75 heretic 10 }
+Angers_Province
+	Angers
+	england
+	French_Rebels
+	173 172 171
+	france, templars_chapter_house, river
+	5
+	3
+	religions { catholic 85 orthodox 0 islam 0 pagan 10 heretic 5 }
+Gyulafehervar_Province
+	Gyulafehervar
+	hungary
+	Wallachian_Core_Rebels
+	72 177 58
+	hungary, teutonic_knights_chapter_house, river
+	5
+	2
+	religions { catholic 26 orthodox 34 islam 0 pagan 35 heretic 5 }
+Chersonesos_Province
+	Chersonesos
+	byzantium
+	Steppe_Rebels
+	17 74 202
+	byzantium, tartars
+	5
+	1
+	religions { catholic 10 orthodox 30 islam 5 pagan 30 heretic 25 }
+Vienna_Province
+	Vienna
+	hre
+	Bohemian_Rebels
+	131 61 33
+	hre, river, slavic, unique1
+	5
+	3
+	religions { catholic 90 orthodox 0 islam 0 pagan 6 heretic 4 }
+Dijon_Province
+	Dijon
+	france
+	Burgundian_Rebels
+	85 114 141
+	france, templars_chapter_house, river
+	5
+	4
+	religions { catholic 75 orthodox 0 islam 0 pagan 5 heretic 20 }
+Verona_Province
+	Verona
+	hre
+	Veronesi_Rebels
+	175 175 175
+	venice, no_pirates, teutonic_knights_chapter_house, river
+	5
+	3
+	religions { catholic 90 orthodox 0 islam 0 pagan 0 heretic 10 }
+Ratisbon_Province
+	Ratisbon
+	hre
+	German_Core_Rebels
+	150 150 150
+	hre, river, slavic
+	5
+	3
+	religions { catholic 85 orthodox 0 islam 0 pagan 5 heretic 10 }
+Bordeaux_Province
+	Bordeaux
+	france
+	French_Rebels
+	68 232 41
+	france, templars_chapter_house, river
+	5
+	3
+	religions { catholic 80 orthodox 0 islam 0 pagan 5 heretic 15 }
+Severin_Province
+	Severin
+	cumans
+	Wallachian_Rebels
+	218 246 61
+	serbia, hungary, river, tartars
+	5
+	1
+	religions { catholic 5 orthodox 30 islam 0 pagan 60 heretic 5 }
+Milan_Province
+	Milan
+	hre,
+	Milanese_Rebels
+	221 232 41
+	pisa
+	5
+	7
+	religions { catholic 90 orthodox 0 islam 0 pagan 5 heretic 5 }
+Venice_Province
+	Venice
+	venice
+	Venetian_Capital_Rebels
+	13 198 117
+	venice, capital, no_pirates, teutonic_knights_chapter_house, st_johns_chapter_house
+	5
+	7
+	religions { catholic 85 orthodox 5 islam 0 pagan 2 heretic 8 }
+Toulouse_Province
+	Toulouse
+	france
+	Toulouse_Rebels
+	196 13 198
+	france, aragon, templars_chapter_house, river
+	5
+	3
+	religions { catholic 40 orthodox 0 islam 0 pagan 5 heretic 55 }
+Leon_Province
+	Leon
+	spain
+	Leonese_Capital_Rebels
+	13 157 198
+	spain, knights_of_santiago_chapter_house
+	5
+	3
+	religions { catholic 90 orthodox 0 islam 0 pagan 2 heretic 8 }
+Zagreb_Province
+	Zagreb
+	hungary
+	Croatian_Rebels
+	58 173 177
+	serbia, hungary, river, slavic
+	5
+	2
+	religions { catholic 50 orthodox 20 islam 0 pagan 15 heretic 15 }
+Tarnovo_Province
+	Tarnovo
+	cumans
+	Bulgarian_Rebels
+	131 33 100
+	byzantium, crusade, river, slavic
+	5
+	1
+	religions { catholic 5 orthodox 35 islam 0 pagan 10 heretic 50 }
+Zara_Province
+	Zara
+	venice
+	Venetian_Rebels
+	177 83 58
+	venice, hungary, no_pirates
+	5
+	2
+	religions { catholic 85 orthodox 5 islam 0 pagan 0 heretic 10 }
+Toledo_Province
+	Toledo
+	spain
+	Castilian_Core_Rebels
+	198 13 35
+	spain, knights_of_santiago_chapter_house, river, unique1
+	5
+	3
+	religions { catholic 50 orthodox 0 islam 40 pagan 0 heretic 10 }
+Bologna_Province
+	Bologna
+	papal_states
+	Italian_Rebels
+	198 43 13
+	hre, venice
+	5
+	4
+	religions { catholic 90 orthodox 0 islam 0 pagan 0 heretic 10 }
+Pamplona_Province
+	Pamplona
+	aragon
+	Basque_Core_Rebels
+	31 100 37
+	aragon, st_johns_chapter_house, unique2
+	5
+	1
+	religions { catholic 75 orthodox 0 islam 5 pagan 0 heretic 20 }
+Genoa_Province
+	Genoa
+	hre
+	Genoese_Capital_Rebels
+	157 13 198
+	pisa, capital, st_johns_chapter_house
+	5
+	3
+	religions { catholic 90 orthodox 0 islam 0 pagan 0 heretic 10 }
+Florence_Province
+	Florence
+	pisa
+	Italian_Core_Rebels
+	157 198 13
+	pisa, no_pirates, river
+	5
+	7
+	religions { catholic 90 orthodox 0 islam 0 pagan 0 heretic 10 }
+Trebizond_Province
+	Trebizond
+	byzantium
+	Greek_Rebels
+	202 156 17
+	byzantium, jihad, silk_road, armenia
+	5
+	1
+	religions { catholic 0 orthodox 65 islam 30 pagan 0 heretic 5 }
+Arles_Province
+	Arles
+	hre
+	Burgundian_Rebels
+	117 198 13
+	france, st_johns_chapter_house, river
+	5
+	3
+	religions { catholic 85 orthodox 0 islam 0 pagan 3 heretic 12 }
+Ani_Province
+	Ani
+	turks
+	Armenian_Rebels
+	202 61 17
+	georgia, no_pirates, river, silk_road, armenia
+	5
+	3
+	religions { catholic 0 orthodox 58 islam 30 pagan 7 heretic 5 }
+Lisbon_Province
+	Lisbon
+	portugal
+	Berber_Rebels
+	13 198 30
+	portugal, knights_of_santiago_chapter_house, st_johns_chapter_house, river, unique1
+	5
+	4
+	religions { catholic 30 orthodox 0 islam 60 pagan 0 heretic 10 }
+Thessalonica_Province
+	Thessalonica
+	byzantium
+	Greek_Core_Rebels
+	177 58 145
+	byzantium, river, unique1
+	5
+	5
+	religions { catholic 2 orthodox 85 islam 0 pagan 3 heretic 10 }
+Arta_Province
+	Arta
+	byzantium
+	Greek_Core_Rebels
+	255 255 210
+	byzantium
+	5
+	1
+	religions { catholic 20 orthodox 65 islam 0 pagan 5 heretic 10 }
+Cologne_Province
+	Cologne
+	hre
+	German_Core_Rebels
+	255 225 220
+	hre, teutonic_knights_chapter_house, river, hanse, unique2
+	5
+	4
+	religions { catholic 80 orthodox 0 islam 0 pagan 5 heretic 15 }
+Nicaea_Province
+	Nicaea
+	byzantium
+	Greek_Rebels
+	33 59 131
+	byzantium, no_pirates
+	5
+	4
+	religions { catholic 5 orthodox 75 islam 5 pagan 5 heretic 10 }
+Naples_Province
+	Naples
+	sicily
+	Italian_Rebels
+	198 13 174
+	sicily, templars_chapter_house, st_johns_chapter_house, unique2
+	5
+	7
+	religions { catholic 45 orthodox 40 islam 8 pagan 0 heretic 7 }
+Caesarea_Province
+	Caesarea
+	rum
+	Anatolian_Rebels
+	177 58 148
+	rum, no_pirates, river, silk_road, armenia
+	5
+	5
+	religions { catholic 0 orthodox 55 islam 27 pagan 8 heretic 10 }
+Cordoba_Province
+	Cordoba
+	moors
+	Berber_Rebels
+	17 13 198
+	spain, moors, river, andalusia
+	5
+	5
+	religions { catholic 20 orthodox 0 islam 70 pagan 0 heretic 10 }
+Durazzo_Province
+	Durazzo
+	byzantium
+	Greek_Rebels
+	13 18 244
+	byzantium, slavic
+	5
+	1
+	religions { catholic 23 orthodox 60 islam 2 pagan 5 heretic 10 }
+Valencia_Province
+	Valencia
+	aragon
+	Berber_Rebels
+	187 198 13
+	aragon, st_johns_chapter_house, crusade, river, unique2
+	5
+	3
+	religions { catholic 55 orthodox 0 islam 40 pagan 0 heretic 5 }
+Sives_Province
+	Sives
+	rum
+	Danishmend_Rebels
+	17 165 202
+	rum, jihad, armenia
+	5
+	2
+	religions { catholic 0 orthodox 55 islam 27 pagan 8 heretic 10 }
+Sis_Province
+	Sis
+	byzantium
+	Armenian_Capital_Rebels
+	17 202 52
+	jihad, horde_target, hanse, africa, berber
+	5
+	4
+	religions { catholic 10 orthodox 50 islam 25 pagan 0 heretic 15 }
+Mosul_Province
+	Mosul
+	zengid
+	Seljuk_Capital_Rebels
+	41 232 225
+	zengid, abbasid, capital, no_pirates, river
+	5
+	4
+	religions { catholic 0 orthodox 10 islam 75 pagan 5 heretic 10 }
+Cagliari_Province
+	Cagliari
+	pisa
+	Pisan_Rebels
+	198 35 13
+	pisa
+	5
+	1
+	religions { catholic 38 orthodox 35 islam 5 pagan 7 heretic 15 }
+Edessa_Province
+	Edessa
+	jerusalem
+	Seljuk_Rebels
+	244 122 13
+	zengid, no_pirates, templars_chapter_house, st_johns_chapter_house, crusade, river, armenia, crusader
+	5
+	4
+	religions { catholic 20 orthodox 40 islam 30 pagan 0 heretic 10 }
+Smyrna_Province
+	Smyrna
+	byzantium
+	Anatolian_Rebels
+	61 177 58
+	byzantium, river
+	5
+	3
+	religions { catholic 5 orthodox 65 islam 12 pagan 8 heretic 10 }
+Antioch_Province
+	Antioch
+	jerusalem
+	Seljuk_Rebels
+	13 244 165
+	turks, templars_chapter_house, st_johns_chapter_house, crusade, jihad, river, silk_road, armenia, crusader
+	5
+	4
+	religions { catholic 40 orthodox 25 islam 20 pagan 5 heretic 10 }
+Granada_Province
+	Granada
+	moors
+	Berber_Core_Rebels
+	180 198 180
+	moors, andalusia, unique1
+	5
+	4
+	religions { catholic 15 orthodox 0 islam 70 pagan 5 heretic 10 }
+Wasit_Province
+	Al_Wasit
+	abbasid
+	Abbasid_Core_Rebels
+	13 171 244
+	abbasid, persia, river, caravan
+	5
+	4
+	religions { catholic 0 orthodox 0 islam 94 pagan 0 heretic 6 }
+Corinth_Province
+	Corinth
+	byzantium
+	Greek_Core_Rebels
+	225 192 192
+	byzantium, st_johns_chapter_house
+	5
+	3
+	religions { catholic 5 orthodox 90 islam 0 pagan 0 heretic 5 }
+Lefkosia_Province
+	Lefkosia
+	byzantium
+	Greek_Rebels
+	126 144 111
+	byzantium, templars_chapter_house
+	5
+	2
+	religions { catholic 15 orthodox 50 islam 20 pagan 5 heretic 10 }
+Damascus_Province
+	Damascus
+	egypt
+	Damascene_Rebels
+	244 203 14
+	zengid, crusade, horde_target, silk_road, caravan, slavemarket
+	5
+	3
+	religions { catholic 1 orthodox 19 islam 70 pagan 5 heretic 5 }
+Sijilmasa_Province
+	Sijilmasa
+	moors
+	Saharan_Rebels
+	17 83 202
+	moors, desert, caravan, africa, berber
+	5
+	0
+	religions { catholic 0 orthodox 0 islam 50 pagan 30 heretic 20 }
+Tunis_Province
+	Tunis
+	egypt
+	Zirid_Core_Rebels
+	202 191 17
+	moors, crusade, jihad, caravan, slavemarket, berber, unique1
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 80 pagan 5 heretic 15 }
+Acre_Province
+	Acre
+	jerusalem
+	Arab_Core_Rebels
+	33 131 128
+	zengid, no_pirates, templars_chapter_house, teutonic_knights_chapter_house, st_johns_chapter_house, crusade, crusader
+	5
+	2
+	religions { catholic 30 orthodox 30 islam 25 pagan 0 heretic 15 }
+Chandax_Province
+	Chandax
+	byzantium
+	Greek_Core_Rebels
+	193 162 206
+	byzantium, st_johns_chapter_house
+	5
+	3
+	religions { catholic 5 orthodox 80 islam 0 pagan 5 heretic 10 }
+Ascalon_Province
+	Ascalon
+	egypt
+	Arab_Rebels
+	35 244 13
+	egypt, crusade, desert, crusader
+	5
+	1
+	religions { catholic 5 orthodox 15 islam 65 pagan 5 heretic 10 }
+Poznan_Province
+	Poznan
+	poland
+	Polish_Core_Rebels
+	202 17 48
+	poland, river, slavic, unique1
+	5
+	3
+	religions { catholic 45 orthodox 0 islam 0 pagan 53 heretic 2 }
+Alexandria_Province
+	Alexandria
+	egypt
+	Fatimid_Core_Rebels
+	244 13 214
+	egypt, caravan, unique1
+	5
+	9
+	religions { catholic 2 orthodox 40 islam 53 pagan 2 heretic 3 }
+Damietta_Province
+	Damietta
+	egypt
+	Fatimid_Core_Rebels
+	244 13 138
+	egypt, no_pirates, jihad, river, unique2
+	5
+	9
+	religions { catholic 3 orthodox 30 islam 57 pagan 5 heretic 5 }
+Ar_Raqqah_Province
+	Ar_Raqqah
+	zengid
+	Seljuk_Core_Rebels
+	42 232 77
+	zengid, river, caravan
+	5
+	3
+	religions { catholic 0 orthodox 10 islam 80 pagan 5 heretic 5 }
+Basra_Province
+	Basra
+	abbasid
+	Abbasid_Rebels
+	255 221 187
+	abbasid, persia, no_pirates, jihad, river, caravan
+	5
+	5
+	religions { catholic 0 orthodox 10 islam 75 pagan 10 heretic 5 }
+Nis_Province
+	Nis
+	serbia
+	Serbian_Rebels
+	193 255 255
+	serbia, river, slavic
+	5
+	1
+	religions { catholic 5 orthodox 35 islam 0 pagan 10 heretic 50 }
+Chernigov_Province
+	Chernigov
+	kievan_rus
+	Steppe_Core_Rebels
+	255 198 198
+	kievan_rus, river, slavic, unique1
+	5
+	2
+	religions { catholic 0 orthodox 45 islam 5 pagan 45 heretic 5 }
+Lyon_Province
+	Lyon
+	hre
+	Burgundian_Core_Rebels
+	206 255 231
+	france, no_pirates, templars_chapter_house, river
+	5
+	5
+	religions { catholic 90 orthodox 0 islam 0 pagan 0 heretic 10 }
+Sinop_Province
+	Sinop
+	byzantium
+	Anatolian_Rebels
+	255 255 176
+	byzantium
+	5
+	1
+	religions { catholic 0 orthodox 65 islam 17 pagan 8 heretic 10 }
+Ras_Province
+	Ras
+	serbia
+	Serbian_Capital_Rebels
+	217 255 217
+	serbia, capital, slavic
+	5
+	1
+	religions { catholic 10 orthodox 60 islam 0 pagan 8 heretic 22 }
+Barcelona_Province
+	Barcelona
+	aragon
+	Aragonese_Core_Rebels
+	221 255 221
+	aragon, crusade, unique1
+	5
+	5
+	religions { catholic 62 orthodox 0 islam 20 pagan 0 heretic 18 }
+Palma_Province
+	Palma
+	aragon
+	Berber_Rebels
+	255 255 187
+	aragon
+	5
+	1
+	religions { catholic 20 orthodox 5 islam 60 pagan 0 heretic 15 }
+Bari_Province
+	Bari
+	sicily
+	Island_Rebels
+	217 213 38
+	sicily, st_johns_chapter_house, unique1
+	5
+	3
+	religions { catholic 25 orthodox 57 islam 10 pagan 3 heretic 5 }
+Skara_Province
+	Skara
+	norway
+	Swedish_Rebels
+	255 125 190
+	norway, no_pirates, hanse, unique1
+	5
+	1
+	religions { catholic 55 orthodox 0 islam 0 pagan 40 heretic 5 }
+Bristol_Province
+	Bristol
+	england
+	English_Core_Rebels
+	251 141 68
+	england, no_pirates
+	5
+	2
+	religions { catholic 85 orthodox 0 islam 0 pagan 5 heretic 10 }
+Valladolid_Province
+	Valladolid
+	spain
+	Leonese_Core_Rebels
+	199 226 226
+	spain, river
+	5
+	2
+	religions { catholic 70 orthodox 0 islam 20 pagan 0 heretic 10 }
+Freiberg_Province
+	Freiberg
+	hre
+	German_Rebels
+	128 128 192
+	hre, slavic
+	5
+	1
+	religions { catholic 85 orthodox 0 islam 0 pagan 0 heretic 15 }
+Szczecin_Province
+	Szczecin
+	denmark
+	Polish_Rebels
+	255 255 0
+	poland, no_pirates, hanse, slavic
+	5
+	1
+	religions { catholic 35 orthodox 0 islam 0 pagan 63 heretic 2 }
+Tripoli_Province
+	Tripoli
+	jerusalem
+	Arab_Rebels
+	255 128 255
+	zengid, crusade, crusader
+	5
+	2
+	religions { catholic 50 orthodox 20 islam 20 pagan 0 heretic 10 }
+Saqsin_Province
+	Saqsin
+	cumans
+	Steppe_Core_Rebels
+	0 128 128
+	cumans, no_pirates, river, tartars
+	5
+	2
+	religions { catholic 0 orthodox 5 islam 20 pagan 60 heretic 15 }
+Qus_Province
+	Qus
+	egypt
+	Saharan_Rebels
+	158 201 58
+	egypt, river, caravan, africa
+	5
+	7
+	religions { catholic 2 orthodox 30 islam 60 pagan 3 heretic 5 }
+Clermont_Province
+	Clermont
+	france
+	French_Rebels
+	98 156 221
+	france, templars_chapter_house, river
+	5
+	3
+	religions { catholic 70 orthodox 0 islam 0 pagan 5 heretic 25 }
+Utrecht_Province
+	Utrecht
+	hre
+	Flemish_Rebels
+	98 30 86
+	hre, river, hanse, flanders
+	5
+	2
+	religions { catholic 80 orthodox 0 islam 0 pagan 8 heretic 12 }
+Santiago_Province
+	Santiago
+	spain
+	Leonese_Core_Rebels
+	252 242 131
+	spain, santiago
+	5
+	0
+	religions { catholic 85 orthodox 0 islam 0 pagan 5 heretic 10 }
+Tlemcen_Province
+	Tlemcen
+	moors
+	Berber_Core_Rebels
+	22 86 105
+	moors, caravan, berber
+	5
+	2
+	religions { catholic 0 orthodox 5 islam 80 pagan 10 heretic 5 }
+Pisa_Province
+	Pisa
+	pisa
+	Pisan_Capital_Rebels
+	154 201 228
+	pisa, capital, st_johns_chapter_house, river
+	5
+	3
+	religions { catholic 95 orthodox 0 islam 0 pagan 0 heretic 5 }
+Olomoc_Province
+	Olomoc
+	poland
+	Polish_Core_Rebels
+	34 221 141
+	poland, st_johns_chapter_house, river, slavic
+	5
+	2
+	religions { catholic 47 orthodox 3 islam 0 pagan 45 heretic 5 }
+Erzurum_Province
+	Erzurum
+	turks
+	Armenian_Rebels
+	252 3 140
+	rum, no_pirates, silk_road, slavemarket, armenia
+	5
+	1
+	religions { catholic 0 orthodox 35 islam 55 pagan 5 heretic 5 }
+Plock_Province
+	Plock
+	poland
+	Polish_Core_Rebels
+	119 61 9
+	poland, teutonic_knights_chapter_house, river, prussia, slavic
+	5
+	1
+	religions { catholic 35 orthodox 8 islam 0 pagan 55 heretic 2 }
+Ancona_Province
+	Ancona
+	papal_states
+	Italian_Rebels
+	9 183 126
+	papal_states, teutonic_knights_chapter_house
+	5
+	2
+	religions { catholic 90 orthodox 0 islam 0 pagan 0 heretic 10 }
+Nice_Province
+	Nice
+	pisa
+	Genoese_Rebels
+	116 9 3
+	pisa
+	5
+	2
+	religions { catholic 85 orthodox 0 islam 0 pagan 5 heretic 10 }
+Angora_Province
+	Angora
+	rum
+	Anatolian_Core_Rebels
+	227 98 91
+	rum, no_pirates
+	5
+	2
+	religions { catholic 0 orthodox 60 islam 22 pagan 8 heretic 10 }
+Bergen_Province
+	Bergen
+	norway
+	Norwegian_Capital_Rebels
+	194 35 35
+	norway, capital, no_pirates, hanse
+	5
+	1
+	religions { catholic 50 orthodox 0 islam 0 pagan 45 heretic 5 }
+Tmutarakan_Province
+	Tmutarakan
+	kievan_rus
+	Steppe_Rebels
+	81 81 255
+	cumans, no_pirates, slavemarket, tartars
+	5
+	1
+	religions { catholic 0 orthodox 33 islam 5 pagan 60 heretic 2 }
+Sigtuna_Province
+	Sigtuna
+	denmark
+	Swedish_Core_Rebels
+	0 255 128
+	norway, no_pirates, hanse, unique2
+	5
+	0
+	religions { catholic 50 orthodox 0 islam 0 pagan 45 heretic 5 }
+Szekesfehervar_Province
+	Szekesfehervar
+	hungary
+	Magyar_Rebels
+	247 38 38
+	hungary, st_johns_chapter_house, river
+	5
+	3
+	religions { catholic 80 orthodox 2 islam 0 pagan 8 heretic 10 }
+Silves_Province
+	Silves
+	moors
+	Berber_Rebels
+	130 128 0
+	portugal, moors, knights_of_santiago_chapter_house, andalusia
+	5
+	0
+	religions { catholic 25 orthodox 0 islam 65 pagan 0 heretic 10 }
+Sredets_Province
+	Sredets
+	serbia
+	Wallachian_Core_Rebels
+	128 196 174
+	byzantium, slavic
+	5
+	1
+	religions { catholic 5 orthodox 35 islam 0 pagan 10 heretic 50 }
+Ulm_Province
+	Ulm
+	hre
+	Swiss_Rebels
+	54 34 85
+	hre, no_pirates, river
+	5
+	3
+	religions { catholic 85 orthodox 0 islam 0 pagan 0 heretic 15 }
+Derbent_Province
+	Derbent
+	cumans
+	Derbent_Rebels
+	80 104 156
+	turks, georgia, jihad, silk_road, slavemarket, tartars
+	5
+	2
+	religions { catholic 0 orthodox 4 islam 51 pagan 33 heretic 12 }
+Murcia_Province
+	Murcia
+	moors
+	Berber_Rebels
+	235 204 109
+	moors, aragon, knights_of_santiago_chapter_house, crusade, andalusia
+	5
+	2
+	religions { catholic 30 orthodox 0 islam 60 pagan 0 heretic 10 }
+Tarabulus_Province
+	Tarabulus
+	egypt
+	Banu_Hilal_Rebels
+	152 94 94
+	moors, no_pirates, desert, caravan, slavemarket, africa, berber
+	5
+	0
+	religions { catholic 5 orthodox 0 islam 70 pagan 20 heretic 5 }
+Sharukan_Province
+	Sharukan
+	cumans
+	Steppe_Capital_Rebels
+	222 90 37
+	cumans, capital, tartars
+	5
+	1
+	religions { catholic 0 orthodox 10 islam 10 pagan 75 heretic 5 }
+Brandeburg_Province
+	Brandeburg
+	hre
+	Prussian_Rebels
+	117 171 196
+	hre, hanse, slavic
+	5
+	1
+	religions { catholic 30 orthodox 0 islam 0 pagan 65 heretic 5 }
+Al_Aqaba_Province
+	Al_Aqaba
+	jerusalem
+	Fatimid_Rebels
+	235 204 204
+	jerusalem, no_pirates, desert
+	5
+	0
+	religions { catholic 10 orthodox 10 islam 70 pagan 0 heretic 10 }
+Vrhbosna_Province
+	Vrhbosna
+	serbia
+	Serbian_Rebels
+	247 93 93
+	serbia, slavic
+	5
+	1
+	religions { catholic 40 orthodox 40 islam 0 pagan 5 heretic 15 }
+Tayma_Province
+	Tayma
+	egypt
+	Arab_Rebels
+	22 42 241
+	egypt, crusade, desert, caravan, unique2
+	5
+	0
+	religions { catholic 0 orthodox 2 islam 65 pagan 10 heretic 23 }
+Poitiers_Province
+	Poitiers
+	france
+	French_Rebels
+	155 90 215
+	france, templars_chapter_house, river
+	5
+	3
+	religions { catholic 85 orthodox 0 islam 0 pagan 0 heretic 15 }
+Sevilla_Province
+	Sevilla
+	moors
+	Berber_Rebels
+	139 74 103
+	moors, river, andalusia
+	5
+	5
+	religions { catholic 11 orthodox 0 islam 80 pagan 0 heretic 9 }
+Twangste_Province
+	Twangste
+	lithuania
+	Prussian_Rebels
+	39 151 47
+	st_johns_chapter_house, jihad, river, desert, caravan, slavic
+	5
+	1
+	religions { catholic 5 orthodox 5 islam 0 pagan 85 heretic 5 }
+Pskov_Province
+	Pskov
+	russia
+	Rus_Core_Rebels
+	169 153 87
+	russia, no_pirates, river, hanse, unique1
+	5
+	1
+	religions { catholic 0 orthodox 79 islam 0 pagan 19 heretic 2 }
+Visby_Province
+	Visby
+	denmark
+	Swedish_Core_Rebels
+	24 123 59
+	denmark, hanse
+	5
+	1
+	religions { catholic 40 orthodox 2 islam 0 pagan 40 heretic 18 }
+Lund_Province
+	Lund
+	denmark
+	Danish_Capital_Rebels
+	140 27 27
+	denmark, capital, hanse
+	5
+	2
+	religions { catholic 65 orthodox 0 islam 0 pagan 25 heretic 10 }
+Kerman_Province
+	Kerman
+	turks
+	Seljuk_Rebels
+	80 85 24
+	turks, persia, desert, tartars
+	5
+	0
+	religions { catholic 0 orthodox 0 islam 65 pagan 10 heretic 25 }
+Urgench_Province
+	Urgench
+	turks
+	Khwarezmian_Rebels
+	20 64 97
+	turks, no_pirates, jihad, river, silk_road, caravan, tartars
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 70 pagan 25 heretic 5 }
+Ray_Province
+	Ray
+	turks
+	Khwarezmian_Core_Rebels
+	24 68 102
+	turks, persia, jihad, silk_road, caravan
+	5
+	2
+	religions { catholic 0 orthodox 0 islam 75 pagan 10 heretic 15 }
+Isfahan_Province
+	Isfahan
+	turks
+	Seljuk_Capital_Rebels
+	152 18 18
+	turks, persia, capital, silk_road
+	5
+	4
+	religions { catholic 0 orthodox 0 islam 70 pagan 15 heretic 15 }
+Shiraz_Province
+	Shiraz
+	turks
+	Seljuk_Rebels
+	163 154 49
+	turks, persia
+	5
+	3
+	religions { catholic 0 orthodox 0 islam 80 pagan 5 heretic 15 }
+Hasankeyf_Province
+	Hasankeyf
+	turks
+	Seljuk_Rebels
+	16 96 31
+	zengid, turks, no_pirates, river, armenia
+	5
+	2
+	religions { catholic 0 orthodox 20 islam 65 pagan 10 heretic 5 }
+Malatya_Province
+	Malatya
+	turks
+	Anatolian_Rebels
+	130 205 151
+	turks, armenia
+	5
+	2
+	religions { catholic 0 orthodox 25 islam 55 pagan 15 heretic 5 }
+Merv_Province
+	Merv
+	turks
+	Merv_Rebels
+	140 48 48
+	turks, persia, caravan
+	5
+	5
+	religions { catholic 0 orthodox 0 islam 70 pagan 10 heretic 20 }
+Hrodna_Province
+	Goroden
+	lithuania
+	Lithuanian_Rebels
+	242 46 46
+	lithuania, no_pirates, slavic
+	5
+	1
+	religions { catholic 2 orthodox 35 islam 0 pagan 53 heretic 10 }
+Al_Ahsa_Province
+	Al_Ahsa
+	abbasid
+	Arab_Rebels
+	175 44 118
+	abbasid, desert, caravan, slavemarket
+	5
+	0
+	religions { catholic 0 orthodox 0 islam 60 pagan 20 heretic 20 }
+Aktobe_Province
+	Aktobe
+	cumans
+	Steppe_Rebels
+	108 40 40
+	cumans, no_pirates, tartars
+	5
+	0
+	religions { catholic 0 orthodox 0 islam 10 pagan 85 heretic 5 }
+Konjikala_Province
+	Konjikala
+	turks
+	Khwarezmian_Rebels
+	80 96 81
+	turks, persia, desert, tartars
+	5
+	0
+	religions { catholic 0 orthodox 0 islam 80 pagan 15 heretic 5 }
+Yazd_Province
+	Yazd
+	turks
+	Seljuk_Core_Rebels
+	54 89 44
+	turks, persia, silk_road, caravan
+	5
+	1
+	religions { catholic 0 orthodox 0 islam 80 pagan 15 heretic 5 }
+Al-Mahdiya_Province
+	Al-Mahdiya
+	egypt
+	Zirid_Capital_Rebels
+	71 87 62
+	moors, jihad, caravan, berber
+	5
+	3
+	religions { catholic 0 orthodox 0 islam 85 pagan 5 heretic 10 }
+Turov_Province
+	Turov
+	kievan_rus
+	Rus_Core_Rebels
+	83 78 127
+	kievan_rus, slavic
+	5
+	1
+	religions { catholic 3 orthodox 67 islam 0 pagan 20 heretic 10 }
+Polotsk_Province
+	Polotsk
+	kievan_rus
+	Rus_Core_Rebels
+	164 46 46
+	russia, river, hanse, slavic
+	5
+	1
+	religions { catholic 1 orthodox 64 islam 5 pagan 25 heretic 5 }
+Orleans_Province
+	Orleans
+	france
+	French_Core_Rebels
+	104 160 104
+	france, river
+	5
+	4
+	religions { catholic 90 orthodox 0 islam 0 pagan 0 heretic 10 }
+Mecca_Province
+	Mecca
+	egypt
+	Arab_Rebels
+	102 33 85
+	egypt, jihad, desert, caravan, unique1
+	5
+	0
+	religions { catholic 0 orthodox 2 islam 90 pagan 3 heretic 5 }
+Turku_Province
+	Turku
+	lithuania
+	Finn_Rebels
+	66 47 85
+	denmark, russia, lithuania, no_pirates, hanse
+	5
+	0
+	religions { catholic 0 orthodox 20 islam 0 pagan 70 heretic 10 }
+Fes_Province
+	Fes
+	moors
+	Berber_Core_Rebels
+	40 198 69
+	moors, berber, unique2
+	5
+	3
+	religions { catholic 0 orthodox 0 islam 85 pagan 5 heretic 10 }
+Ragusa_Province
+	Ragusa
+	serbia
+	Italian_Core_Rebels
+	131 33 77
+	venice, serbia
+	5
+	2
+	religions { catholic 70 orthodox 10 islam 0 pagan 0 heretic 20 }
+Hamadan_Province
+	Hamadan
+	turks
+	Seljuk_Rebels
+	72 75 228
+	turks, persia, silk_road
+	5
+	2
+	religions { catholic 0 orthodox 0 islam 77 pagan 3 heretic 20 }
+Tabriz_Province
+	Tabriz
+	turks
+	Seljuk_Rebels
+	52 178 138
+	turks, no_pirates, silk_road
+	5
+	2
+	religions { catholic 0 orthodox 5 islam 65 pagan 10 heretic 20 }
+Pereyaslav_Province
+	Pereyaslav
+	kievan_rus
+	Rus_Rebels
+	13 38 109
+	kievan_rus, slavic, tartars
+	5
+	1
+	religions { catholic 0 orthodox 55 islam 5 pagan 25 heretic 15 }
+Adrianople_Province
+	Adrianople
+	byzantium
+	Greek_Core_Rebels
+	69 88 52
+	byzantium, river, unique2
+	5
+	3
+	religions { catholic 2 orthodox 85 islam 0 pagan 3 heretic 10 }
+Badajoz_Province
+	Badajoz
+	spain
+	Berber_Rebels
+	108 101 27
+	moors, knights_of_santiago_chapter_house, river, andalusia
+	5
+	1
+	religions { catholic 42 orthodox 0 islam 48 pagan 0 heretic 10 }
+Algiers_Province
+	Algiers
+	moors
+	Hammadid_Rebels
+	149 22 22
+	moors, no_pirates, jihad, berber
+	5
+	2
+	religions { catholic 0 orthodox 0 islam 80 pagan 10 heretic 10 }
+Volodymyr_Province
+	Volodymyr
+	kievan_rus
+	Rus_Rebels
+	233 39 153
+	kievan_rus, slavic
+	5
+	2
+	religions { catholic 20 orthodox 54 islam 0 pagan 20 heretic 6 }
+Azaq_Province
+	Azaq
+	cumans
+	Steppe_Core_Rebels
+	233 108 108
+	cumans, tartars
+	5
+	1
+	religions { catholic 0 orthodox 0 islam 10 pagan 80 heretic 10 }
+Kolyvan_Province
+	Kolyvan
+	lithuania
+	Esth_Rebels
+	25 116 102
+	lithuania, no_pirates, hanse, prussia, unique1
+	5
+	1
+	religions { catholic 35 orthodox 35 islam 0 pagan 25 heretic 5 }
+Varad_Province
+	Varad
+	hungary
+	Magyar_Core_Rebels
+	43 90 40
+	hungary, tartars
+	5
+	1
+	religions { catholic 80 orthodox 0 islam 0 pagan 10 heretic 10 }
+Kalmar_Province
+	Kalmar
+	norway
+	Swedish_Capital_Rebels
+	162 227 149
+	denmark, hanse, unique2
+	5
+	1
+	religions { catholic 59 orthodox 1 islam 0 pagan 35 heretic 5 }
+Ghent_Province
+	Ghent
+	france
+	Flemish_Rebels
+	0 124 203
+	france, no_pirates, river, hanse, flanders
+	5
+	5
+	religions { catholic 70 orthodox 0 islam 0 pagan 5 heretic 25 }
+Alamut_Province
+	Alamut
+	turks
+	Seljuk_Rebels
+	18 142 36
+	turks, persia
+	5
+	1
+	religions { catholic 0 orthodox 0 islam 50 pagan 10 heretic 40 }
+Suzdal_Province
+	Suzdal
+	kievan_rus
+	Rus_Rebels
+	154 104 104
+	russia
+	5
+	1
+	religions { catholic 0 orthodox 50 islam 15 pagan 25 heretic 10 }
+Attaleia_Province
+	Attaleia
+	byzantium
+	Anatolian_Core_Rebels
+	216 211 58
+	byzantium, jihad
+	5
+	2
+	religions { catholic 5 orthodox 60 islam 17 pagan 8 heretic 10 }
+Kutaisi_Province
+	Kutaisi
+	georgia
+	Georgian_Core_Rebels
+	123 38 38
+	georgia
+	5
+	2
+	religions { catholic 0 orthodox 80 islam 10 pagan 5 heretic 5 }
+Baku_Province
+	Baku
+	turks
+	Georgian_Rebels
+	224 105 73
+	georgia, turks, no_pirates, river, slavemarket, tartars
+	5
+	4
+	religions { catholic 0 orthodox 20 islam 50 pagan 20 heretic 10 }
+Lubeck_Province
+	Lubeck
+	hre
+	Obotrite_Rebels
+	36 104 35
+	hre, poland, teutonic_knights_chapter_house, river, hanse, slavic
+	5
+	1
+	religions { catholic 30 orthodox 0 islam 0 pagan 65 heretic 5 }
