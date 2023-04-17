@@ -1,0 +1,3 @@
+music_type TEXT
+regions TEXT
+factions TEXT

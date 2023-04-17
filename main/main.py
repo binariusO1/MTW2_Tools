@@ -13,23 +13,26 @@ PATH_UTILS = PATH_SCRIPTS + DIR_UTILS
 sys.path.insert(1, PATH_UTILS)
 
 from scripts.utils.logger import *
-from scripts.data.FactionsData import *
 from scripts.FactionsImport import *
 from scripts.FactionsExport import *
-from scripts.data.RegionsData import *
 from scripts.RegionsImport import *
 from scripts.RegionsExport import *
+from scripts.MusicTypeImport import *
+from scripts.MusicTypeExport import *
 
 def run_scripts():
     # for filename in os.listdir(PATH_SCRIPTS):
     # f = os.path.join(PATH_SCRIPTS, filename)
     # if os.path.isfile(f):
     #    print(f)
-    factionsData = FactionsData(FactionsImport(DIR_PATH_MAIN).get_list())
-    FactionsExport(DATA_PATH + DIR_DATA, DIR_TEMPLATES, factionsData.factionsDataList)
+    factionsData = FactionsImport(DIR_PATH_MAIN).get_list()
+    FactionsExport(DATA_PATH + DIR_DATA, DIR_TEMPLATES, factionsData)
 
-    regionsData = RegionsData(RegionsImport(DIR_PATH_MAIN).get_list())
-    RegionsExport(DATA_PATH + DIR_BASE, DIR_TEMPLATES, regionsData.regionsDataList)
+    regionsData = RegionsImport(DIR_PATH_MAIN).get_list()
+    RegionsExport(DATA_PATH + DIR_BASE, DIR_TEMPLATES, regionsData)
+
+    musicTypeData = MusicTypeImport(DIR_PATH_MAIN).get_list()
+    MusicTypeExport(DATA_PATH + DIR_BASE, DIR_TEMPLATES, musicTypeData)
 
 if __name__ == '__main__':
     LOG_INFO("Run main")

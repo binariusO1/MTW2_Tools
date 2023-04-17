@@ -1,0 +1,135 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Generated for SSHIP by python multi tool. Version: 0.1 Author: @StaefanBatory (binarius0110@gmail.com)
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type cuman_steppe
+
+regions Aktobe_Province Azaq_Province Bulgar_Province Derbent_Province Saqsin_Province
+regions Sarkel_Province Severin_Province Sharukan_Province Tarnovo_Province
+
+factions cumans mongols 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type eastern_european
+
+regions Esztergom_Province Gdansk_Province Gyulafehervar_Province Halych_Province Iasi_Province
+regions Krakow_Province Plock_Province Poznan_Province Riga_Province Szekesfehervar_Province
+regions Varad_Province Wroclaw_Province Zagreb_Province Zara_Province
+
+factions hungary poland 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type gaelic_lands
+
+regions Dublin_Province Edinburgh_Province
+
+factions scotland 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type hold_jerusalem
+
+regions Acre_Province Antioch_Province Jerusalem_Province Tripoli_Province
+
+factions jerusalem 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type lithuania_ee
+
+regions Hrodna_Province Kernave_Province Twangste_Province
+
+factions lithuania 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type middle_eastern
+
+regions Al-Mahdiya_Province Al_Ahsa_Province Al_Aqaba_Province Alamut_Province Aleppo_Province
+regions Alexandria_Province Algiers_Province Angora_Province Ani_Province Ar_Raqqah_Province
+regions Attaleia_Province Baghdad_Province Baku_Province Basra_Province Caesarea_Province
+regions Cairo_Province Cordoba_Province Damascus_Province Damietta_Province Edessa_Province
+regions Erzurum_Province Fes_Province Granada_Province Hamadan_Province Hasankeyf_Province
+regions Isfahan_Province Kerman_Province Konjikala_Province Konya_Province Malatya_Province
+regions Marrakesh_Province Mecca_Province Merv_Province Mosul_Province Neyshabur_Province
+regions Qus_Province Ray_Province Shiraz_Province Sijilmasa_Province Sinop_Province
+regions Sives_Province Tabriz_Province Tarabulus_Province Tayma_Province Tlemcen_Province
+regions Tunis_Province Urgench_Province Utrecht_Province Wasit_Province Yazd_Province
+regions 
+
+factions abbasid egypt moors rum turks zengid 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type norse_christianized
+
+regions Aberdeen_Province Bergen_Province Kalmar_Province Kolyvan_Province Lund_Province
+regions Oslo_Province Ribe_Province Roskilde_Province Sigtuna_Province Skara_Province
+regions Turku_Province Visby_Province
+
+factions denmark norway 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type northern_european
+
+regions Angers_Province Arles_Province Basel_Province Bordeaux_Province Brandeburg_Province
+regions Bremen_Province Bristol_Province Caernarvon_Province Clermont_Province Cologne_Province
+regions Dijon_Province Frankfurt_Province Freiberg_Province Ghent_Province Hamburg_Province
+regions Leuven_Province Lincoln_Province London_Province Lubeck_Province Lyon_Province
+regions Norwich_Province Nuremburg_Province Olomoc_Province Orleans_Province Paris_Province
+regions Poitiers_Province Prague_Province Ratisbon_Province Rennes_Province Rheims_Province
+regions Rouen_Province Speyer_Province Szczecin_Province Toulouse_Province Trier_Province
+regions Troyes_Province Ulm_Province Vienna_Province York_Province
+
+factions england france hre 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type oriental_orthodox
+
+regions Adrianople_Province Arta_Province Ascalon_Province Chandax_Province Chersonesos_Province
+regions Constantinople_Province Corinth_Province Kutaisi_Province Lefkosia_Province Nicaea_Province
+regions Sis_Province Smyrna_Province Tbilisi_Province Thessalonica_Province Trebizond_Province
+regions 
+
+factions byzantium georgia 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type sicily_meltingpot
+
+regions Bari_Province Cagliari_Province Murcia_Province Naples_Province Palermo_Province
+regions Sevilla_Province Silves_Province
+
+factions sicily 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type slavic_orthodox
+
+regions Chernigov_Province Kiev_Province Nis_Province Novgorod_Province Pereyaslav_Province
+regions Polotsk_Province Pskov_Province Ras_Province Rustov_Province Ryazan_Province
+regions Skadar_Province Smolensk_Province Sredets_Province Suzdal_Province Tmutarakan_Province
+regions Turov_Province Volodymyr_Province Vrhbosna_Province
+
+factions kievan_rus russia serbia 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+music_type southern_european
+
+regions Ancona_Province Badajoz_Province Barcelona_Province Bologna_Province Burgos_Province
+regions Coimbra_Province Durazzo_Province Florence_Province Genoa_Province Leon_Province
+regions Lisbon_Province Milan_Province Nice_Province Palma_Province Pamplona_Province
+regions Pisa_Province Ragusa_Province Reggio_Province Rome_Province Santiago_Province
+regions Toledo_Province Valencia_Province Valladolid_Province Venice_Province Verona_Province
+regions Zaragoza_Province
+
+factions aragon papal_states pisa portugal slave spain venice 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
