@@ -684,7 +684,7 @@ Severin_Province
 	religions { catholic 5 orthodox 30 islam 0 pagan 60 heretic 5 }
 Milan_Province
 	Milan
-	hre,
+	hre
 	Milanese_Rebels
 	221 232 41
 	pisa

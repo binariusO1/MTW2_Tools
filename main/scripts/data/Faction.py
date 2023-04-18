@@ -2,6 +2,11 @@ import re
 from scripts.items.Color import *
 
 
+# Faction
+# |
+# |--- Region []
+
+
 class Faction:
 
     def __init__(self, is_horde=False):

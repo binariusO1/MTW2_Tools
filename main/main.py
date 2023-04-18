@@ -13,12 +13,15 @@ PATH_UTILS = PATH_SCRIPTS + DIR_UTILS
 sys.path.insert(1, PATH_UTILS)
 
 from scripts.utils.logger import *
+from scripts.EventsImport import *
+from scripts.EventsExport import *
 from scripts.FactionsImport import *
 from scripts.FactionsExport import *
 from scripts.RegionsImport import *
 from scripts.RegionsExport import *
 from scripts.MusicTypeImport import *
 from scripts.MusicTypeExport import *
+
 
 def run_scripts():
     # for filename in os.listdir(PATH_SCRIPTS):
@@ -33,6 +36,10 @@ def run_scripts():
 
     musicTypeData = MusicTypeImport(DIR_PATH_MAIN).get_list()
     MusicTypeExport(DATA_PATH + DIR_BASE, DIR_TEMPLATES, musicTypeData)
+
+    eventsData = EventsImport(DIR_PATH_MAIN, regionsData).get_list()
+    EventsExport(DATA_PATH + DIR_IMPERIAL_CAMPAIGN, DIR_TEMPLATES, eventsData)
+
 
 if __name__ == '__main__':
     LOG_INFO("Run main")

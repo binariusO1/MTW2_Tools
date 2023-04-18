@@ -59,7 +59,6 @@ regions Marrakesh_Province Mecca_Province Merv_Province Mosul_Province Neyshabur
 regions Qus_Province Ray_Province Shiraz_Province Sijilmasa_Province Sinop_Province
 regions Sives_Province Tabriz_Province Tarabulus_Province Tayma_Province Tlemcen_Province
 regions Tunis_Province Urgench_Province Utrecht_Province Wasit_Province Yazd_Province
-regions 
 
 factions abbasid egypt moors rum turks zengid 
 
@@ -95,7 +94,6 @@ music_type oriental_orthodox
 regions Adrianople_Province Arta_Province Ascalon_Province Chandax_Province Chersonesos_Province
 regions Constantinople_Province Corinth_Province Kutaisi_Province Lefkosia_Province Nicaea_Province
 regions Sis_Province Smyrna_Province Tbilisi_Province Thessalonica_Province Trebizond_Province
-regions 
 
 factions byzantium georgia 
 

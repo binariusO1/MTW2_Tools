@@ -1,3 +1,11 @@
+
+
+# Music_type
+# |
+# |--- Faction [] (as string)
+# |--- Region [] (as string)
+
+
 class MusicType:
     def __init__(self):
         self.descr_sound_music_types = {}

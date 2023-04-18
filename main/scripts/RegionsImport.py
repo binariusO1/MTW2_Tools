@@ -1,6 +1,6 @@
 import xlrd
 from scripts.utils.logger import *
-from scripts.data.Region import Region, Color
+from scripts.data.Region import Region, Color, Coordinates
 from scripts.utils.read_excel import *
 from scripts.utils.constants import *
 
@@ -36,6 +36,7 @@ class RegionsImport:
 
             is_hidden_resource = False
             hidden_resources = []
+            coordinates = Coordinates(0, 0)
             for i, attr in enumerate(titles_list):
                 value = attrList[i]
                 if attr == "r1":
@@ -55,12 +56,15 @@ class RegionsImport:
                 elif attr == "heretic":
                     region.descr_regions['religions'].heretic = int(float(value))
                 elif attr == "hidden_resources_start":
-                    # print('start:', hidden_resources)
                     is_hidden_resource = True
                 elif attr == "hidden_resources_end":
                     is_hidden_resource = False
-                    # print('end:', hidden_resources)
                     region.descr_regions['hidden_resources'] = hidden_resources
+                elif attr == "x":
+                    coordinates.x = int(value)
+                elif attr == "y":
+                    coordinates.y = int(value)
+                    region.descr_strat['coordinates'] = coordinates
                 elif is_hidden_resource:
                     if value == "yes":
                         hidden_resources.append(attr)

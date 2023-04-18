@@ -1,5 +1,10 @@
 from scripts.items.Color import *
 from scripts.items.Religion import *
+from scripts.items.Coordinates import *
+
+# Region (in Faction, in Event)
+# |
+# |--- Rebel_type []
 
 
 class Region:
@@ -15,6 +20,9 @@ class Region:
         self.descr_regions['triumph_value'] = 5
         self.descr_regions['fertility'] = 1
         self.descr_regions['religions'] = Religion(100, 0, 0, 0, 0)
+
+        self.descr_strat = {}
+        self.descr_strat['coordinates'] = Coordinates(0, 0)
 
     def __repr__(self):
         return "{}:".format(self.descr_regions['region_name'])
