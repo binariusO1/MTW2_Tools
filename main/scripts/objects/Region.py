@@ -20,9 +20,11 @@ class Region:
         self.descr_regions['triumph_value'] = 5
         self.descr_regions['fertility'] = 1
         self.descr_regions['religions'] = Religion(100, 0, 0, 0, 0)
+        self.descr_regions['music_type'] = ""
+        self.descr_regions['pool_name'] = ""
 
         self.descr_strat = {}
         self.descr_strat['coordinates'] = Coordinates(0, 0)
 
     def __repr__(self):
-        return "{}:".format(self.descr_regions['region_name'])
+        return "{}: {}".format(self.descr_regions['region_name'], self.descr_strat['coordinates'])

@@ -1,0 +1,7 @@
+type				TEXT
+skeleton			TEXT
+scale				FLOAT
+indiv_range			INT
+texture				FACTION, DIR/textures/PREFIX_FACTION.FORMAT
+model_flexi_m			DIR/MODEL, max
+shadow_model_flexi		DIR/MODEL, max

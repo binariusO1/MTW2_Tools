@@ -1,0 +1,41 @@
+load data from:
+(factions)
+descr_character.txt
+descr_model_strat.txt
+descr_lbc_db.txt ;just need to be always generated
+descr_offmap_models.txt ;just need to be always generated
+
+descr_rebel_factions.txt
+
+descr_sounds_accents.txt
+descr_sounds_music.txt
+
+(buildings)
+descr_walls.txt
+export_descr_buildings.txt
+
+(regions)
+descr_sm_resources.txt
+
+(diplomacy)
+descr_faction_standing.txt
+(units)
+descr_mount.txt
+descr_projectile.txt
+
+as scripts:
+(diplomacy)
+descr_diplomacy.xml
+
+
+no need:
+descr_names.txt ; just add script which export to translations
+descr_names_lookup.txt ; related with descr_names.txt (make autogenerating)
+
+
+is it needed?
+descr_religions.txt
+
+check:
+can we add some more here?
+descr_standards.txt

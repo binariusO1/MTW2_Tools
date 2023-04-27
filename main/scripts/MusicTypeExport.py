@@ -41,13 +41,15 @@ class MusicTypeExport:
                 lineTitle = all_words[0]
                 if lineTitle == 'regions':
                     regionsToWrite = ""
+                    j = 0;
                     for i, region in enumerate(musicType.descr_sound_music_types['regions']):
+                        j = i
                         regionsToWrite = regionsToWrite + region + ' '
-                        if (i+1)%5 == 0:
+                        if (i + 1) % 5 == 0:
                             newLine = line.replace("TEXT", regionsToWrite[:-1])
                             file.write(newLine)
                             regionsToWrite = ""
-                    if not (i+1)%5 == 0:
+                    if not (j + 1) % 5 == 0:
                         newLine = line.replace("TEXT", regionsToWrite[:-1])
                         file.write(newLine)
                     file.write('\n')

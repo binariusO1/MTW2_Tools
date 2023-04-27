@@ -1,0 +1,92 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Mercenary pools for the SSHIP edited by Lifthrasir, MWY and JoC
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; TABLE OF CONTENTS (use Ctrl+F to jump to the relevant section)
+
+; ==================== BRITISH ISLANDS
+; ==================== SCANDINAVIA
+; ==================== POLAND AND THE BALTICS
+; ==================== RUSSIA
+; ==================== STEPPES
+; ==================== GERMANY
+; ==================== FRANCE
+; ==================== SPAIN
+; ==================== ITALY
+; ==================== BALKANS
+; ==================== ANATOLIA
+; ==================== CAUCASUS
+; ==================== CALIPHATE
+; ==================== LEVANT 
+; ==================== PERSIA
+; ==================== EGYPT
+; ==================== MAGHREB
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Modified by JoC 2020-21:
+; - pools for Poland and the Baltics thought out and redone
+; - Scandinavia, Rus, Germany, Maghreb and Egypt slightly adjusted without changing the core aspects
+; The other pools should be analysed and modified in the future.
+; Prices are MWY 095 (lower than before), with JoC modification to get rid of the exorbitant levels.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; ORDER OF UNITS FOR EACH POOL (keep it for to make the future modding easier)
+; - units available for every faction
+; - units available for specific religions
+; - crusading untis
+; In any group:
+;--------------------------- MISSILES:
+;--------------------------- INFANTRY:
+;--------------------------- CAVALRY:
+;--------------------------- ARTILLERY:
+;--------------------------- SHIPS:
+; In those groups: in order of appearance and phasing out.
+;
+; !!!!! Keep prices unique: one price is only for 1 unit (this will ease modifying prices wholesale with "Find & Replace" function)
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; INFO ON MODDING - based on the Tsardoms file info
+; pool    -- name of mercenary pool (any name goes)
+; regions -- names of the provinces that should belonging to that pool
+; unit    -- name of mercenary unit
+;         -- exp X                           -- experience level of mercenary unit
+;         -- cost X                          -- cost to recruit mercenary unit
+;         -- replenish X - X                 -- upper and lower bounds on pool replenishment rate
+;         -- max X                           -- maximum pool size for unit
+;         -- initial X                       -- initial pool size for unit
+;         -- {optional} start_year X         -- year that unit becomes available {0 indicates no set start year}
+;         -- {optional} end_year X           -- last year that unit will be available {0 indicates no set end year}
+;         -- {optional} religions { A B C }  -- list of faction religions unit is available for {no entries indicates available for all religions}
+;         -- {optional} crusading            -- {requires one religion to have been specifed} unit only available to crusadingjihad armies
+;         -- {optional} events { A B C}      -- unit only available after all specified events have occurred, event is a string corresponding to descr_events.txt	
+;
+; * if there's more than 1 unit of the type - it's not a problem, they will both appear
+; * in EDB there must be slave ownership for any unit appearing in this file
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; (For the moment) Unknown issues:
+; - what happens if a cog is available inland?
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; COMMENTS ON THE UNITS:
+; - Northern Europe, with much of woods, have two specific units: Hunters & Woodsmen
+; - Russia & Scandinavia have a specific strong axe unit: Axemen
+; - Mercenary Spearmen are the unit available accross the Christian world, sometimes replaced by the local unit (like Welsh Spearmen).
+; - Western Europe has two early units: Macemen, Sergeant Swordsmen.
+; - Mercenary Crossbowmen come only with proper urbanization level and proper technology (mounted_crossbows - the event reflects a broader issue of technological change, not only for horsemen).
+; - African (black) units are more frequent in the desert regions but occassionaly appear also on the coast.
+; - no mercenary boats - a faction needs own capabilities to build ships to transport own armies (unless it's a crusade).
+;
+;
+; =========================================================================================================================
+; ==================== BRITISH ISLANDS ====================================================================================
+; =========================================================================================================================
+; at the beginning of 13th century, in the wake of urbanization, the mercenaries are becoming more available
+; archery traditions are significantly lower in Scotland and Ireland compared to England and Wales (fewer Hunters)

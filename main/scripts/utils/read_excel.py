@@ -1,3 +1,4 @@
+import xlrd
 from scripts.utils.logger import *
 
 ASCII_A = 65
@@ -95,6 +96,21 @@ def collect_data_from_row(worksheet_name, col_start, col_end, row):
     return value
 
 
+def get_rows(p_workbook_name, p_worksheet_index, p_table_index=0):
+    workbook = xlrd.open_workbook(p_workbook_name)
+    worksheet_name = workbook.sheet_by_index(p_worksheet_index)
+    range_start = get_tables_size(worksheet_name)[p_table_index*2]
+    range_end = get_tables_size(worksheet_name)[p_table_index*2 + 1]
+    rows = []
+    value = []
+    for row in range(range_start.row, range_end.row):
+        for col in range(column_char_to_int(range_start.col), column_char_to_int(range_end.col) + 1):
+            value.append(worksheet_name.cell_value(row, col))
+        rows.append(value)
+        value = []
+    return rows
+
+
 def collect_first_row_as_titles(worksheet_name, range_start, range_end):
     titlesList = []
     for row in range(range_start.row - 1, range_start.row):
@@ -103,12 +119,20 @@ def collect_first_row_as_titles(worksheet_name, range_start, range_end):
     return titlesList
 
 
+def get_titles_from_first_row(p_workbook_name, p_worksheet_index, p_table_index=0):
+    workbook = xlrd.open_workbook(p_workbook_name)
+    worksheet_name = workbook.sheet_by_index(p_worksheet_index)
+    range_start = get_tables_size(worksheet_name)[p_table_index*2]
+    range_end = get_tables_size(worksheet_name)[p_table_index*2 + 1]
+    return collect_first_row_as_titles(worksheet_name, range_start, range_end)
+
+
 def get_tables_size(worksheet_name):
     addresses = []
     i = 0
     while True:
         if worksheet_name.cell_value(0, i) == "" or worksheet_name.cell_value(1, i) == "":
-            break;
+            break
         cell1 = increment_cell_address(address_to_cell(worksheet_name.cell_value(0, i)))
         cell2 = decrement_cell_address(address_to_cell(worksheet_name.cell_value(1, i)))
         addresses.append(cell1)

@@ -1,0 +1,5 @@
+type			admiral
+
+actions			moving_normal, quick_sail, blockade, disembark, exchange
+wage_base		TEXT
+starting_action_points	TEXT

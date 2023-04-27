@@ -14,7 +14,7 @@ class MusicType:
         self.descr_sound_music_types["factions"] = []
 
     def __repr__(self):
-        return "{}: {}: {}".format(self.descr_sound_music_types['music_type'], self.descr_sound_music_types['factions'],   self.descr_sound_music_types["regions"])
+        return "{}: {}: {}".format(self.descr_sound_music_types['music_type'], self.descr_sound_music_types['factions'], self.descr_sound_music_types["regions"])
 
 class MusicTypeData:
     def __init__(self, musicTypeDataList):

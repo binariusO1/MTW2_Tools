@@ -4,6 +4,7 @@ from scripts.utils.filestamp import *
 
 class EventsExport:
     TEMPLATE_NAME = "descr_events.txt"
+    TEMPLATE_NAME_INFO = "descr_events_INFO.txt"
     data_path = ""
     dir_templates = ""
     events = []
@@ -20,6 +21,7 @@ class EventsExport:
         file = open(self.data_path + self.TEMPLATE_NAME, "w", encoding="utf8")
 
         self.__write_filestamp(file)
+        self.__write_info(file, self.TEMPLATE_NAME_INFO)
         self.__write_events(file)
 
         file.close()
@@ -56,17 +58,18 @@ class EventsExport:
                     newLine = line.replace("TEXT", date)
                     p_file.write(newLine)
                 elif lineTitle == 'position' and event.descr_events["position"].is_set():
-                    position = str(int(event.descr_events["position"].x)) + ", " + str(int(event.descr_events["position"].y))
+                    position = str(int(event.descr_events["position"].x)) + ", " + str(
+                        int(event.descr_events["position"].y))
                     newLine = line.replace("TEXT", position)
                     p_file.write(newLine)
                 elif lineTitle == 'position' and not event.descr_events["regions"] == []:
                     for region in event.descr_events["regions"]:
+                        # print("Region event: ", region)
                         if not region.descr_regions['region_name'] == '':
-                            position = str(int(region.descr_strat['coordinates'] .x)) + ", " + str(int(region.descr_strat['coordinates'].y))
+                            position = str(int(region.descr_strat['coordinates'].x)) + ", " + str(
+                                int(region.descr_strat['coordinates'].y))
                             newLine = line.replace("TEXT", position)
                             p_file.write(newLine)
-                        # print(region.descr_strat['coordinates'])
-                        # finds coordinates
                 elif lineTitle == 'movie' and not event.descr_events["movie"] == '':
                     newLine = line.replace("TEXT", event.descr_events["movie"])
                     p_file.write(newLine + '\n')
@@ -74,6 +77,14 @@ class EventsExport:
             p_file.write(get_separator() + '\n')
 
         return
+
+    def __write_info(self, file, info_file_name):
+        info_file = open(self.dir_templates + info_file_name, "r", encoding="utf8")
+        file.write('\n')
+        for line in info_file:
+            file.write(line)
+        file.write('\n')
+        info_file.close()
 
     def __get_empty_template_event(self):
         template_faction = []

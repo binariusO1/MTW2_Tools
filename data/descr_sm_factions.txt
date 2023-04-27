@@ -628,7 +628,7 @@ loading_logo					loading_screen/symbols/symbol128_slave.tga
 standard_index					31
 logo_index					FACTION_LOGO_REBELS
 small_logo_index				SMALL_FACTION_LOGO_REBELS
-triumph_value					5
+triumph_value					6
 custom_battle_availability			no
 can_sap						no
 prefers_naval_invasions				no

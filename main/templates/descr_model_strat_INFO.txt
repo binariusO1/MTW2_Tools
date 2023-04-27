@@ -1,0 +1,67 @@
+;;	
+;	SSHIP - modified by Lifthrasir June 2019
+;	review for 098 by Belovese using bovi's checker:
+;		commented lines to be deleted later if no problems arises, every line with:  timurids, teutonic_order, rebels, milan
+;		if so also delete relevant tga and dds files
+
+
+;	this file contains the model linkages for both strategy map and battlefield; it gets 
+;	parsed on application startup but is not otherwise referred to. the data format is thus:
+;
+;	;						indicates a comment ;-)
+;							
+;	type					indicates a new model type
+;
+;								must be followed by id name string
+;
+;	skeleton				indicates which skeleton should be used for these models
+;
+;								must be followed by id name string (cf descr_skeleton.txt)
+;
+;	indiv_range				indicates at what point we start rendering men individually even if 
+;								we can 'group render'
+;
+;								must be followed by an integer (whole number) range in metres
+;
+;								group render means the whole unit will be rendered using one 
+;								model, individual render means the soldiers will be	tested 
+;								individually for which model lod to use (slower) 
+;
+;	(models)				there must be at least one; the model_ keywords indicate a new model in
+;								the lod series; each must be followed by a filename and either the
+;								lod range in metres or the word 'max' for maximum range... all lods
+;								must be in order, from shortest distance (highest detail) to furthest
+;								distance. The model_ keywords are:
+;
+;			model_flexi_m		essentially a flexi model but has a small number of weighted 
+;								vertices, such as Will's high-detail carthaginian infantryman 
+;								with the weighted shoulder verts 
+;			
+;			model_flexi_c		a flexi model which contains per-vertex colours, for example 
+;								for colouring the different Roman faction assassins
+;
+;			model_flexi			plain vanilla flexi model, which is a single-skinned mesh with 
+;								normals and texture coordinates
+;
+;			shadow_model_flexi	as model_flexi but used to create the shadow volume	
+;
+;	model_mesh				(optional) range only for using animated mesh frames for the model
+;
+;	model_sprite			(optional) sprite model for this model type 
+;
+;								if the first item is a distance (integer number in m), a new 
+;								sprite animation set will be generated for this model; if it is 
+;								anything else, it must be a type name from this file which has a 
+;								valid sprite entry *and* was processed before this type entry
+;
+;	model_tri				(optional) indicates that this model can be represented by a single 
+;								triangle
+;
+;								must be followed by a range (integer number in metres), and three 
+;								floating point numbers in the range 0.0f - 1.0f which indicate 
+;								colours red,green,blue to use for the triangle
+;
+
+
+;strat map only characters
+ignore_registry

@@ -4,7 +4,7 @@ import sys
 from inspect import getframeinfo, stack
 
 
-DEBUG_ON = False
+DEBUG_ON = True
 
 
 def colored(r, g, b, text):

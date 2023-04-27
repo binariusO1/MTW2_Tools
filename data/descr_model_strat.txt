@@ -1,0 +1,1197 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Generated for SSHIP by python multi tool. Version: 0.1 Author: @StaefanBatory (binarius0110@gmail.com)
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;	
+;	SSHIP - modified by Lifthrasir June 2019
+;	review for 098 by Belovese using bovi's checker:
+;		commented lines to be deleted later if no problems arises, every line with:  timurids, teutonic_order, rebels, milan
+;		if so also delete relevant tga and dds files
+
+
+;	this file contains the model linkages for both strategy map and battlefield; it gets 
+;	parsed on application startup but is not otherwise referred to. the data format is thus:
+;
+;	;						indicates a comment ;-)
+;							
+;	type					indicates a new model type
+;
+;								must be followed by id name string
+;
+;	skeleton				indicates which skeleton should be used for these models
+;
+;								must be followed by id name string (cf descr_skeleton.txt)
+;
+;	indiv_range				indicates at what point we start rendering men individually even if 
+;								we can 'group render'
+;
+;								must be followed by an integer (whole number) range in metres
+;
+;								group render means the whole unit will be rendered using one 
+;								model, individual render means the soldiers will be	tested 
+;								individually for which model lod to use (slower) 
+;
+;	(models)				there must be at least one; the model_ keywords indicate a new model in
+;								the lod series; each must be followed by a filename and either the
+;								lod range in metres or the word 'max' for maximum range... all lods
+;								must be in order, from shortest distance (highest detail) to furthest
+;								distance. The model_ keywords are:
+;
+;			model_flexi_m		essentially a flexi model but has a small number of weighted 
+;								vertices, such as Will's high-detail carthaginian infantryman 
+;								with the weighted shoulder verts 
+;			
+;			model_flexi_c		a flexi model which contains per-vertex colours, for example 
+;								for colouring the different Roman faction assassins
+;
+;			model_flexi			plain vanilla flexi model, which is a single-skinned mesh with 
+;								normals and texture coordinates
+;
+;			shadow_model_flexi	as model_flexi but used to create the shadow volume	
+;
+;	model_mesh				(optional) range only for using animated mesh frames for the model
+;
+;	model_sprite			(optional) sprite model for this model type 
+;
+;								if the first item is a distance (integer number in m), a new 
+;								sprite animation set will be generated for this model; if it is 
+;								anything else, it must be a type name from this file which has a 
+;								valid sprite entry *and* was processed before this type entry
+;
+;	model_tri				(optional) indicates that this model can be represented by a single 
+;								triangle
+;
+;								must be followed by a range (integer number in metres), and three 
+;								floating point numbers in the range 0.0f - 1.0f which indicate 
+;								colours red,green,blue to use for the triangle
+;
+
+
+;strat map only characters
+ignore_registry
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				southern_ambassador
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				venice, models_strat/textures/southern_ambassador_venice.tga
+texture				papal_states, models_strat/textures/southern_ambassador_papal_states.tga
+model_flexi_m			models_strat/southern_ambassador.cas, max
+shadow_model_flexi		models_strat/shadow_scroll.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_diplomat
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/agents/textures/rus_diplomat_russia.tga
+texture				kievan_rus, KCC_models_strat/agents/textures/rus_diplomat_kievan_rus.tga
+model_flexi_m			KCC_models_strat/agents/rus_diplomat.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byz_diplomat
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/agents/textures/byz_diplomat_byzantium.tga
+texture				georgia, KCC_models_strat/agents/textures/byz_diplomat_georgia.tga
+model_flexi_m			KCC_models_strat/agents/byz_diplomat.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				mus_diplomat
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				abbasid, KCC_models_strat/agents/textures/mus_diplomat_abbasid.tga
+texture				egypt, KCC_models_strat/agents/textures/mus_diplomat_egypt.tga
+texture				turks, KCC_models_strat/agents/textures/mus_diplomat_turks.tga
+texture				moors, KCC_models_strat/agents/textures/mus_diplomat_moors.tga
+texture				zengid, KCC_models_strat/agents/textures/mus_diplomat_zengid.tga
+texture				rum, KCC_models_strat/agents/textures/mus_diplomat_rum.tga
+model_flexi_m			KCC_models_strat/agents/mus_diplomat.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				euro_diplomat
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				sicily, KCC_models_strat/agents/textures/euro_diplomat_sicily.tga
+texture				denmark, KCC_models_strat/agents/textures/euro_diplomat_denmark.tga
+texture				scotland, KCC_models_strat/agents/textures/euro_diplomat_scotland.tga
+texture				france, KCC_models_strat/agents/textures/euro_diplomat_france.tga
+texture				hre, KCC_models_strat/agents/textures/euro_diplomat_hre.tga
+texture				england, KCC_models_strat/agents/textures/euro_diplomat_england.tga
+texture				portugal, KCC_models_strat/agents/textures/euro_diplomat_portugal.tga
+texture				poland, KCC_models_strat/agents/textures/euro_diplomat_poland.tga
+texture				spain, KCC_models_strat/agents/textures/euro_diplomat_spain.tga
+texture				hungary, KCC_models_strat/agents/textures/euro_diplomat_hungary.tga
+texture				aragon, KCC_models_strat/agents/textures/euro_diplomat_aragon.tga
+texture				lithuania, KCC_models_strat/agents/textures/euro_diplomat_lithuania.tga
+texture				serbia, KCC_models_strat/agents/textures/euro_diplomat_serbia.tga
+texture				norway, KCC_models_strat/agents/textures/euro_diplomat_norway.tga
+texture				jerusalem, KCC_models_strat/agents/textures/euro_diplomat_jerusalem.tga
+texture				pisa, KCC_models_strat/agents/textures/euro_diplomat_pisa.tga
+model_flexi_m			KCC_models_strat/agents/euro_diplomat.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_scroll.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				nom_diplomat
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/agents/textures/nom_diplomat_cumans.tga
+texture				mongols, KCC_models_strat/agents/textures/nom_diplomat_mongols.tga
+model_flexi_m			KCC_models_strat/agents/nom_diplomat.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				northern_spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+texture				denmark, models_strat/textures/Spy_denmark.tga
+texture				scotland, models_strat/textures/Spy_scotland.tga
+texture				france, models_strat/textures/Spy_france.tga
+texture				hre, models_strat/textures/Spy_hre.tga
+texture				england, models_strat/textures/Spy_england.tga
+texture				poland, models_strat/textures/Spy_poland.tga
+texture				hungary, models_strat/textures/Spy_hungary.tga
+texture				lithuania, models_strat/textures/Spy_lithuania.tga
+texture				serbia, models_strat/textures/Spy_serbia.tga
+texture				norway, models_strat/textures/Spy_norway.tga
+texture				jerusalem, models_strat/textures/Spy_jerusalem.tga
+model_flexi_m			models_strat/northern_spy.cas, max
+shadow_model_flexi		models_strat/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				southern_spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+texture				venice, models_strat/textures/southern_spy_venice.tga
+texture				sicily, models_strat/textures/southern_spy_sicily.tga
+texture				portugal, models_strat/textures/southern_spy_portugal.tga
+texture				spain, models_strat/textures/southern_spy_spain.tga
+texture				aragon, models_strat/textures/southern_spy_aragon.tga
+texture				pisa, models_strat/textures/southern_spy_pisa.tga
+texture				papal_states, models_strat/textures/southern_spy_papal_states.tga
+texture				slave, models_strat/textures/southern_spy_slave.tga
+model_flexi_m			models_strat/southern_spy.cas, max
+shadow_model_flexi		models_strat/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				islamic_spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+texture				egypt, models_strat/textures/islamic_spy_egypt.tga
+texture				mongols, models_strat/textures/islamic_spy_mongols.tga
+model_flexi_m			models_strat/islamic_spy.cas, max
+shadow_model_flexi		models_strat/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/agents/textures/rus_spy_russia.tga
+texture				kievan_rus, KCC_models_strat/agents/textures/rus_spy_kievan_rus.tga
+model_flexi_m			KCC_models_strat/agents/rus_spy.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byz_spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/agents/textures/byz_spy_byzantium.tga
+texture				georgia, KCC_models_strat/agents/textures/byz_spy_georgia.tga
+model_flexi_m			KCC_models_strat/agents/byz_spy.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				nom_spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/agents/textures/nom_spy_cumans.tga
+model_flexi_m			KCC_models_strat/agents/nom_spy.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				mus_spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+texture				abbasid, KCC_models_strat/agents/textures/mus_spy_abbasid.tga
+texture				turks, KCC_models_strat/agents/textures/mus_spy_turks.tga
+texture				moors, KCC_models_strat/agents/textures/mus_spy_moors.tga
+texture				zengid, KCC_models_strat/agents/textures/mus_spy_zengid.tga
+texture				rum, KCC_models_strat/agents/textures/mus_spy_rum.tga
+model_flexi_m			KCC_models_strat/agents/mus_spy.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				northern_assassin
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+texture				denmark, models_strat/textures/mtw_northen_european_assassin_denmark.tga
+texture				scotland, models_strat/textures/mtw_northen_european_assassin_scotland.tga
+texture				france, models_strat/textures/mtw_northen_european_assassin_france.tga
+texture				hre, models_strat/textures/mtw_northen_european_assassin_hre.tga
+texture				england, models_strat/textures/mtw_northen_european_assassin_england.tga
+texture				poland, models_strat/textures/mtw_northen_european_assassin_poland.tga
+texture				russia, models_strat/textures/mtw_northen_european_assassin_russia.tga
+texture				hungary, models_strat/textures/mtw_northen_european_assassin_hungary.tga
+texture				lithuania, models_strat/textures/mtw_northen_european_assassin_lithuania.tga
+texture				kievan_rus, models_strat/textures/mtw_northen_european_assassin_kievan_rus.tga
+texture				serbia, models_strat/textures/mtw_northen_european_assassin_serbia.tga
+texture				norway, models_strat/textures/mtw_northen_european_assassin_norway.tga
+texture				jerusalem, models_strat/textures/mtw_northen_european_assassin_jerusalem.tga
+model_flexi_m			models_strat/northern_assassin.cas, max
+shadow_model_flexi		models_strat/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				southern_assassin
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+texture				venice, models_strat/textures/assassin_southern_venice.tga
+texture				sicily, models_strat/textures/assassin_southern_sicily.tga
+texture				portugal, models_strat/textures/assassin_southern_portugal.tga
+texture				spain, models_strat/textures/assassin_southern_spain.tga
+texture				aragon, models_strat/textures/assassin_southern_aragon.tga
+texture				pisa, models_strat/textures/assassin_southern_pisa.tga
+texture				papal_states, models_strat/textures/assassin_southern_papal_states.tga
+texture				slave, models_strat/textures/assassin_southern_slave.tga
+model_flexi_m			models_strat/southern_assassin.cas, max
+shadow_model_flexi		models_strat/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				islamic_assassin
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+texture				georgia, models_strat/textures/assassin_southern_georgia.tga
+texture				mongols, models_strat/textures/assassin_southern_mongols.tga
+model_flexi_m			models_strat/islamic_assassin.cas, max
+shadow_model_flexi		models_strat/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byz_assassin
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/agents/textures/byz_assassin_byzantium.tga
+model_flexi_m			KCC_models_strat/agents/byz_assassin.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				nom_assassin
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/agents/textures/nom_assassin_cumans.tga
+model_flexi_m			KCC_models_strat/agents/nom_assassin.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				mus_assassin
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+texture				abbasid, KCC_models_strat/agents/textures/mus_assassin_abbasid.tga
+texture				egypt, KCC_models_strat/agents/textures/mus_assassin_egypt.tga
+texture				turks, KCC_models_strat/agents/textures/mus_assassin_turks.tga
+texture				moors, KCC_models_strat/agents/textures/mus_assassin_moors.tga
+texture				zengid, KCC_models_strat/agents/textures/mus_assassin_zengid.tga
+texture				rum, KCC_models_strat/agents/textures/mus_assassin_rum.tga
+model_flexi_m			KCC_models_strat/agents/mus_assassin.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				northern_princess
+skeleton			princess
+scale				0.7
+indiv_range			40
+texture				abbasid, models_strat/textures/princess_abbasid.tga
+texture				egypt, models_strat/textures/princess_egypt.tga
+texture				cumans, models_strat/textures/princess_cumans.tga
+texture				turks, models_strat/textures/princess_turks.tga
+texture				moors, models_strat/textures/princess_moors.tga
+texture				zengid, models_strat/textures/princess_zengid.tga
+texture				rum, models_strat/textures/princess_rum.tga
+texture				mongols, models_strat/textures/princess_mongols.tga
+model_flexi_m			models_strat/northern_princess.cas, max
+shadow_model_flexi		models_strat/shadow_model_princess_northern.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				southern_princess
+skeleton			princess
+scale				0.7
+indiv_range			40
+texture				papal_states, models_strat/textures/SouthernPrincess_papal_states.tga
+model_flexi_m			models_strat/southern_princess.cas, max
+shadow_model_flexi		models_strat/shadow_model_princess_southern.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_princess
+skeleton			princess
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/agents/textures/rus_princess_russia.tga
+texture				kievan_rus, KCC_models_strat/agents/textures/rus_princess_kievan_rus.tga
+model_flexi_m			KCC_models_strat/agents/rus_princess.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_model_princess_southern.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byz_princess
+skeleton			princess
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/agents/textures/byz_princess_byzantium.tga
+model_flexi_m			KCC_models_strat/agents/byz_princess.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_model_princess_southern.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				euro_princess
+skeleton			princess
+scale				0.7
+indiv_range			40
+texture				venice, KCC_models_strat/agents/textures/euro_princess_venice.tga
+texture				sicily, KCC_models_strat/agents/textures/euro_princess_sicily.tga
+texture				denmark, KCC_models_strat/agents/textures/euro_princess_denmark.tga
+texture				scotland, KCC_models_strat/agents/textures/euro_princess_scotland.tga
+texture				france, KCC_models_strat/agents/textures/euro_princess_france.tga
+texture				hre, KCC_models_strat/agents/textures/euro_princess_hre.tga
+texture				england, KCC_models_strat/agents/textures/euro_princess_england.tga
+texture				portugal, KCC_models_strat/agents/textures/euro_princess_portugal.tga
+texture				poland, KCC_models_strat/agents/textures/euro_princess_poland.tga
+texture				spain, KCC_models_strat/agents/textures/euro_princess_spain.tga
+texture				hungary, KCC_models_strat/agents/textures/euro_princess_hungary.tga
+texture				aragon, KCC_models_strat/agents/textures/euro_princess_aragon.tga
+texture				lithuania, KCC_models_strat/agents/textures/euro_princess_lithuania.tga
+texture				serbia, KCC_models_strat/agents/textures/euro_princess_serbia.tga
+texture				georgia, KCC_models_strat/agents/textures/euro_princess_georgia.tga
+texture				norway, KCC_models_strat/agents/textures/euro_princess_norway.tga
+texture				jerusalem, KCC_models_strat/agents/textures/euro_princess_jerusalem.tga
+texture				pisa, KCC_models_strat/agents/textures/euro_princess_pisa.tga
+model_flexi_m			KCC_models_strat/agents/euro_princess.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_model_princess_southern.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				islamic_merchant
+skeleton			strat_merchant
+scale				0.7
+indiv_range			40
+texture				mongols, models_strat/textures/merchant_mongols.tga
+model_flexi_m			models_strat/islamic_merchant.cas, max
+shadow_model_flexi		models_strat/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				euro_merchant
+skeleton			strat_merchant
+scale				0.7
+indiv_range			40
+texture				sicily, KCC_models_strat/agents/textures/euro_merchant_sicily.tga
+texture				denmark, KCC_models_strat/agents/textures/euro_merchant_denmark.tga
+texture				scotland, KCC_models_strat/agents/textures/euro_merchant_scotland.tga
+texture				france, KCC_models_strat/agents/textures/euro_merchant_france.tga
+texture				hre, KCC_models_strat/agents/textures/euro_merchant_hre.tga
+texture				england, KCC_models_strat/agents/textures/euro_merchant_england.tga
+texture				portugal, KCC_models_strat/agents/textures/euro_merchant_portugal.tga
+texture				poland, KCC_models_strat/agents/textures/euro_merchant_poland.tga
+texture				spain, KCC_models_strat/agents/textures/euro_merchant_spain.tga
+texture				hungary, KCC_models_strat/agents/textures/euro_merchant_hungary.tga
+texture				aragon, KCC_models_strat/agents/textures/euro_merchant_aragon.tga
+texture				lithuania, KCC_models_strat/agents/textures/euro_merchant_lithuania.tga
+texture				serbia, KCC_models_strat/agents/textures/euro_merchant_serbia.tga
+texture				norway, KCC_models_strat/agents/textures/euro_merchant_norway.tga
+texture				jerusalem, KCC_models_strat/agents/textures/euro_merchant_jerusalem.tga
+texture				slave, KCC_models_strat/agents/textures/euro_merchant_slave.tga
+model_flexi_m			KCC_models_strat/agents/euro_merchant.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_merchant
+skeleton			strat_merchant
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/agents/textures/rus_merchant_russia.tga
+texture				kievan_rus, KCC_models_strat/agents/textures/rus_merchant_kievan_rus.tga
+model_flexi_m			KCC_models_strat/agents/rus_merchant.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byz_merchant
+skeleton			strat_merchant
+scale				0.7
+indiv_range			40
+texture				venice, KCC_models_strat/agents/textures/byz_merchant_venice.tga
+texture				byzantium, KCC_models_strat/agents/textures/byz_merchant_byzantium.tga
+texture				georgia, KCC_models_strat/agents/textures/byz_merchant_georgia.tga
+texture				pisa, KCC_models_strat/agents/textures/byz_merchant_pisa.tga
+texture				papal_states, KCC_models_strat/agents/textures/byz_merchant_papal_states.tga
+model_flexi_m			KCC_models_strat/agents/byz_merchant.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				mus_merchant
+skeleton			strat_merchant
+scale				0.7
+indiv_range			40
+texture				abbasid, KCC_models_strat/agents/textures/mus_merchant_abbasid.tga
+texture				egypt, KCC_models_strat/agents/textures/mus_merchant_egypt.tga
+texture				cumans, KCC_models_strat/agents/textures/mus_merchant_cumans.tga
+texture				turks, KCC_models_strat/agents/textures/mus_merchant_turks.tga
+texture				moors, KCC_models_strat/agents/textures/mus_merchant_moors.tga
+texture				zengid, KCC_models_strat/agents/textures/mus_merchant_zengid.tga
+texture				rum, KCC_models_strat/agents/textures/mus_merchant_rum.tga
+model_flexi_m			KCC_models_strat/agents/mus_merchant.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_hand.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				pagan_priest
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				cumans, models_strat/textures/pagan_priest_cumans.tga
+texture				cumans, models_strat/textures/pagan_priest_cumans.tga
+texture				cumans, models_strat/textures/pagan_priest_cumans.tga
+texture				lithuania, models_strat/textures/pagan_priest_lithuania.tga
+texture				lithuania, models_strat/textures/pagan_priest_lithuania.tga
+texture				lithuania, models_strat/textures/pagan_priest_lithuania.tga
+texture				lithuania, models_strat/textures/pagan_priest_lithuania.tga
+texture				mongols, models_strat/textures/pagan_priest_mongols.tga
+texture				mongols, models_strat/textures/pagan_priest_mongols.tga
+texture				mongols, models_strat/textures/pagan_priest_mongols.tga
+texture				mongols, models_strat/textures/pagan_priest_mongols.tga
+model_flexi_m			models_strat/pagan_priest.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				pagan_high_priest
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				cumans, models_strat/textures/pagan_high_priest_cumans.tga
+texture				lithuania, models_strat/textures/pagan_high_priest_lithuania.tga
+texture				mongols, models_strat/textures/pagan_high_priest_mongols.tga
+model_flexi_m			models_strat/pagan_high_priest.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				catholic_priest
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				venice, models_strat/textures/catholic_priest_venice.tga
+texture				sicily, models_strat/textures/catholic_priest_sicily.tga
+texture				denmark, models_strat/textures/catholic_priest_denmark.tga
+texture				scotland, models_strat/textures/catholic_priest_scotland.tga
+texture				france, models_strat/textures/catholic_priest_france.tga
+texture				hre, models_strat/textures/catholic_priest_hre.tga
+texture				england, models_strat/textures/catholic_priest_england.tga
+texture				portugal, models_strat/textures/catholic_priest_portugal.tga
+texture				poland, models_strat/textures/catholic_priest_poland.tga
+texture				spain, models_strat/textures/catholic_priest_spain.tga
+texture				hungary, models_strat/textures/catholic_priest_hungary.tga
+texture				aragon, models_strat/textures/catholic_priest_aragon.tga
+texture				norway, models_strat/textures/catholic_priest_norway.tga
+texture				jerusalem, models_strat/textures/catholic_priest_jerusalem.tga
+texture				pisa, models_strat/textures/catholic_priest_pisa.tga
+texture				papal_states, models_strat/textures/catholic_priest_papal_states.tga
+model_flexi_m			models_strat/catholic_priest.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				catholic_bishop
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				venice, models_strat/textures/catholic_bishop_venice.tga
+texture				sicily, models_strat/textures/catholic_bishop_sicily.tga
+texture				denmark, models_strat/textures/catholic_bishop_denmark.tga
+texture				scotland, models_strat/textures/catholic_bishop_scotland.tga
+texture				france, models_strat/textures/catholic_bishop_france.tga
+texture				hre, models_strat/textures/catholic_bishop_hre.tga
+texture				england, models_strat/textures/catholic_bishop_england.tga
+texture				portugal, models_strat/textures/catholic_bishop_portugal.tga
+texture				poland, models_strat/textures/catholic_bishop_poland.tga
+texture				spain, models_strat/textures/catholic_bishop_spain.tga
+texture				hungary, models_strat/textures/catholic_bishop_hungary.tga
+texture				aragon, models_strat/textures/catholic_bishop_aragon.tga
+texture				norway, models_strat/textures/catholic_bishop_norway.tga
+texture				jerusalem, models_strat/textures/catholic_bishop_jerusalem.tga
+texture				pisa, models_strat/textures/catholic_bishop_pisa.tga
+texture				papal_states, models_strat/textures/catholic_bishop_papal_states.tga
+model_flexi_m			models_strat/catholic_bishop.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				catholic_cardinal
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				venice, models_strat/textures/catholic_cardinal_venice.tga
+texture				sicily, models_strat/textures/catholic_cardinal_sicily.tga
+texture				denmark, models_strat/textures/catholic_cardinal_denmark.tga
+texture				scotland, models_strat/textures/catholic_cardinal_scotland.tga
+texture				france, models_strat/textures/catholic_cardinal_france.tga
+texture				hre, models_strat/textures/catholic_cardinal_hre.tga
+texture				england, models_strat/textures/catholic_cardinal_england.tga
+texture				portugal, models_strat/textures/catholic_cardinal_portugal.tga
+texture				poland, models_strat/textures/catholic_cardinal_poland.tga
+texture				spain, models_strat/textures/catholic_cardinal_spain.tga
+texture				hungary, models_strat/textures/catholic_cardinal_hungary.tga
+texture				aragon, models_strat/textures/catholic_cardinal_aragon.tga
+texture				norway, models_strat/textures/catholic_cardinal_norway.tga
+texture				jerusalem, models_strat/textures/catholic_cardinal_jerusalem.tga
+texture				pisa, models_strat/textures/catholic_cardinal_pisa.tga
+texture				papal_states, models_strat/textures/catholic_cardinal_papal_states.tga
+model_flexi_m			models_strat/catholic_cardinal.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				orthodox_priest
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				byzantium, models_strat/textures/orthodox_priest_byzantium.tga
+model_flexi_m			models_strat/orthodox_priest.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				orthodox_bishop
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				byzantium, models_strat/textures/orthodox_bishop_byzantium.tga
+texture				byzantium, models_strat/textures/orthodox_bishop_byzantium.tga
+texture				russia, models_strat/textures/orthodox_bishop_russia.tga
+texture				kievan_rus, models_strat/textures/orthodox_bishop_kievan_rus.tga
+texture				georgia, models_strat/textures/orthodox_bishop_georgia.tga
+model_flexi_m			models_strat/orthodox_bishop.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				orthodox_patriarch
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				byzantium, models_strat/textures/orthodox_patriarch_byzantium.tga
+texture				byzantium, models_strat/textures/orthodox_patriarch_byzantium.tga
+texture				byzantium, models_strat/textures/orthodox_patriarch_byzantium.tga
+texture				russia, models_strat/textures/orthodox_patriarch_russia.tga
+texture				russia, models_strat/textures/orthodox_patriarch_russia.tga
+texture				russia, models_strat/textures/orthodox_patriarch_russia.tga
+texture				kievan_rus, models_strat/textures/orthodox_patriarch_kievan_rus.tga
+texture				kievan_rus, models_strat/textures/orthodox_patriarch_kievan_rus.tga
+texture				kievan_rus, models_strat/textures/orthodox_patriarch_kievan_rus.tga
+texture				serbia, models_strat/textures/orthodox_patriarch_serbia.tga
+texture				serbia, models_strat/textures/orthodox_patriarch_serbia.tga
+texture				serbia, models_strat/textures/orthodox_patriarch_serbia.tga
+texture				serbia, models_strat/textures/orthodox_patriarch_serbia.tga
+texture				georgia, models_strat/textures/orthodox_patriarch_georgia.tga
+texture				georgia, models_strat/textures/orthodox_patriarch_georgia.tga
+texture				georgia, models_strat/textures/orthodox_patriarch_georgia.tga
+model_flexi_m			models_strat/orthodox_patriarch.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_priest
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/agents/textures/rus_priest_russia.tga
+texture				kievan_rus, KCC_models_strat/agents/textures/rus_priest_kievan_rus.tga
+texture				serbia, KCC_models_strat/agents/textures/rus_priest_serbia.tga
+texture				georgia, KCC_models_strat/agents/textures/rus_priest_georgia.tga
+model_flexi_m			KCC_models_strat/agents/rus_priest.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_bishop
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/agents/textures/rus_bishop_russia.tga
+texture				kievan_rus, KCC_models_strat/agents/textures/rus_bishop_kievan_rus.tga
+texture				serbia, KCC_models_strat/agents/textures/rus_bishop_serbia.tga
+texture				georgia, KCC_models_strat/agents/textures/rus_bishop_georgia.tga
+model_flexi_m			KCC_models_strat/agents/rus_bishop.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				nom_priest
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/agents/textures/nom_priest_cumans.tga
+model_flexi_m			KCC_models_strat/agents/nom_priest.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				muslim_iman
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				abbasid, KCC_models_strat/agents/textures/muslim_iman_abbasid.tga
+texture				abbasid, KCC_models_strat/agents/textures/muslim_iman_abbasid.tga
+texture				abbasid, KCC_models_strat/agents/textures/muslim_iman_abbasid.tga
+texture				egypt, KCC_models_strat/agents/textures/muslim_iman_egypt.tga
+texture				egypt, KCC_models_strat/agents/textures/muslim_iman_egypt.tga
+texture				egypt, KCC_models_strat/agents/textures/muslim_iman_egypt.tga
+texture				turks, KCC_models_strat/agents/textures/muslim_iman_turks.tga
+texture				turks, KCC_models_strat/agents/textures/muslim_iman_turks.tga
+texture				turks, KCC_models_strat/agents/textures/muslim_iman_turks.tga
+texture				moors, KCC_models_strat/agents/textures/muslim_iman_moors.tga
+texture				moors, KCC_models_strat/agents/textures/muslim_iman_moors.tga
+texture				moors, KCC_models_strat/agents/textures/muslim_iman_moors.tga
+texture				zengid, KCC_models_strat/agents/textures/muslim_iman_zengid.tga
+texture				zengid, KCC_models_strat/agents/textures/muslim_iman_zengid.tga
+texture				zengid, KCC_models_strat/agents/textures/muslim_iman_zengid.tga
+texture				rum, KCC_models_strat/agents/textures/muslim_iman_rum.tga
+texture				rum, KCC_models_strat/agents/textures/muslim_iman_rum.tga
+texture				rum, KCC_models_strat/agents/textures/muslim_iman_rum.tga
+model_flexi_m			KCC_models_strat/agents/muslim_iman.cas, max
+shadow_model_flexi		KCC_models_strat/agents/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				pope
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				papal_states, models_strat/textures/pope_papal_states.tga
+model_flexi_m			models_strat/pope.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				heretic
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				slave, models_strat/textures/heretic.tga
+model_flexi_m			models_strat/heretic.cas, max
+shadow_model_flexi		models_strat/shadow_staff.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				witch
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				slave, models_strat/textures/witch.tga
+model_flexi_m			models_strat/witch.cas, max
+shadow_model_flexi		models_strat/shadow_model_princess_northern.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				inquisitor
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+texture				papal_states, models_strat/textures/inquisitor_papal_states.tga
+model_flexi_m			models_strat/inquisitor.cas, max
+shadow_model_flexi		models_strat/shadow_book.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byzantium_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/textures/rs_byz_general_byzantium.tga
+model_flexi_m			KCC_models_strat/byzantium_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_model_sword.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/textures/rus_general_russia.tga
+texture				spain, KCC_models_strat/textures/rus_general_spain.tga
+model_flexi_m			KCC_models_strat/rus_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				mongol_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				mongols, KCC_models_strat/textures/mongol_general_mongols.tga
+model_flexi_m			KCC_models_strat/mongol_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				georgia_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				georgia, KCC_models_strat/textures/georgia_general_georgia.tga
+model_flexi_m			KCC_models_strat/georgia_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_model_sword.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				cuman_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/textures/cuman_general_cumans.tga
+model_flexi_m			KCC_models_strat/cuman_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				lithuania_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				lithuania, KCC_models_strat/textures/lithuania_general_lithuania.tga
+model_flexi_m			KCC_models_strat/lithuania_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				northern_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				denmark, KCC_models_strat/textures/northern_general_denmark.tga
+texture				scotland, KCC_models_strat/textures/northern_general_scotland.tga
+texture				france, KCC_models_strat/textures/northern_general_france.tga
+texture				hre, KCC_models_strat/textures/northern_general_hre.tga
+texture				england, KCC_models_strat/textures/northern_general_england.tga
+texture				poland, KCC_models_strat/textures/northern_general_poland.tga
+texture				kievan_rus, KCC_models_strat/textures/northern_general_kievan_rus.tga
+model_flexi_m			KCC_models_strat/northern_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				southern_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				venice, KCC_models_strat/textures/southern_general_venice.tga
+texture				sicily, KCC_models_strat/textures/southern_general_sicily.tga
+texture				portugal, KCC_models_strat/textures/southern_general_portugal.tga
+texture				hungary, KCC_models_strat/textures/southern_general_hungary.tga
+texture				aragon, KCC_models_strat/textures/southern_general_aragon.tga
+texture				serbia, KCC_models_strat/textures/southern_general_serbia.tga
+texture				norway, KCC_models_strat/textures/southern_general_norway.tga
+texture				jerusalem, KCC_models_strat/textures/southern_general_jerusalem.tga
+texture				pisa, KCC_models_strat/textures/southern_general_pisa.tga
+texture				papal_states, KCC_models_strat/textures/southern_general_papal_states.tga
+texture				slave, KCC_models_strat/textures/southern_general_slave.tga
+model_flexi_m			KCC_models_strat/southern_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				islamic_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				abbasid, models_strat/textures/islamic_general_abbasid.tga
+texture				egypt, models_strat/textures/islamic_general_egypt.tga
+texture				turks, models_strat/textures/islamic_general_turks.tga
+texture				moors, models_strat/textures/islamic_general_moors.tga
+texture				zengid, models_strat/textures/islamic_general_zengid.tga
+texture				rum, models_strat/textures/islamic_general_rum.tga
+model_flexi_m			models_strat/islamic_general.cas, max
+shadow_model_flexi		models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				aztec_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				georgia, models_strat/textures/aztec_general_georgia.tga
+model_flexi_m			models_strat/aztec_general.cas, max
+shadow_model_flexi		models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				northern_generic_king
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				venice, KCC_models_strat/textures/northern_generic_king_venice.tga
+texture				sicily, KCC_models_strat/textures/northern_generic_king_sicily.tga
+texture				denmark, KCC_models_strat/textures/northern_generic_king_denmark.tga
+texture				scotland, KCC_models_strat/textures/northern_generic_king_scotland.tga
+texture				france, KCC_models_strat/textures/northern_generic_king_france.tga
+texture				hre, KCC_models_strat/textures/northern_generic_king_hre.tga
+texture				england, KCC_models_strat/textures/northern_generic_king_england.tga
+texture				portugal, KCC_models_strat/textures/northern_generic_king_portugal.tga
+texture				poland, KCC_models_strat/textures/northern_generic_king_poland.tga
+texture				hungary, KCC_models_strat/textures/northern_generic_king_hungary.tga
+texture				aragon, KCC_models_strat/textures/northern_generic_king_aragon.tga
+texture				kievan_rus, KCC_models_strat/textures/northern_generic_king_kievan_rus.tga
+texture				serbia, KCC_models_strat/textures/northern_generic_king_serbia.tga
+texture				norway, KCC_models_strat/textures/northern_generic_king_norway.tga
+texture				jerusalem, KCC_models_strat/textures/northern_generic_king_jerusalem.tga
+texture				pisa, KCC_models_strat/textures/northern_generic_king_pisa.tga
+texture				slave, KCC_models_strat/textures/northern_generic_king_slave.tga
+model_flexi_m			KCC_models_strat/northern_generic_king.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				fancy_general
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				venice, KCC_models_strat/textures/fancy_general_venice.tga
+texture				sicily, KCC_models_strat/textures/fancy_general_sicily.tga
+texture				denmark, KCC_models_strat/textures/fancy_general_denmark.tga
+texture				scotland, KCC_models_strat/textures/fancy_general_scotland.tga
+texture				france, KCC_models_strat/textures/fancy_general_france.tga
+texture				hre, KCC_models_strat/textures/fancy_general_hre.tga
+texture				england, KCC_models_strat/textures/fancy_general_england.tga
+texture				portugal, KCC_models_strat/textures/fancy_general_portugal.tga
+texture				poland, KCC_models_strat/textures/fancy_general_poland.tga
+texture				hungary, KCC_models_strat/textures/fancy_general_hungary.tga
+texture				aragon, KCC_models_strat/textures/fancy_general_aragon.tga
+texture				kievan_rus, KCC_models_strat/textures/fancy_general_kievan_rus.tga
+texture				serbia, KCC_models_strat/textures/fancy_general_serbia.tga
+texture				norway, KCC_models_strat/textures/fancy_general_norway.tga
+texture				jerusalem, KCC_models_strat/textures/fancy_general_jerusalem.tga
+texture				pisa, KCC_models_strat/textures/fancy_general_pisa.tga
+texture				papal_states, KCC_models_strat/textures/fancy_general_papal_states.tga
+texture				slave, KCC_models_strat/textures/fancy_general_slave.tga
+model_flexi_m			KCC_models_strat/fancy_general.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				middle_eastern_sultan
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				abbasid, models_strat/textures/middle_eastern_sultan_abbasid.tga
+texture				abbasid, models_strat/textures/middle_eastern_sultan_abbasid.tga
+texture				egypt, models_strat/textures/middle_eastern_sultan_egypt.tga
+texture				egypt, models_strat/textures/middle_eastern_sultan_egypt.tga
+texture				turks, models_strat/textures/middle_eastern_sultan_turks.tga
+texture				turks, models_strat/textures/middle_eastern_sultan_turks.tga
+texture				moors, models_strat/textures/middle_eastern_sultan_moors.tga
+texture				moors, models_strat/textures/middle_eastern_sultan_moors.tga
+texture				zengid, models_strat/textures/middle_eastern_sultan_zengid.tga
+texture				zengid, models_strat/textures/middle_eastern_sultan_zengid.tga
+texture				rum, models_strat/textures/middle_eastern_sultan_rum.tga
+texture				rum, models_strat/textures/middle_eastern_sultan_rum.tga
+model_flexi_m			models_strat/middle_eastern_sultan.cas, max
+shadow_model_flexi		models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				lithuania_heir
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				lithuania, KCC_models_strat/textures/lithuania_heir_lithuania.tga
+model_flexi_m			KCC_models_strat/lithuania_heir.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				lithuania_leader
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				lithuania, KCC_models_strat/textures/lithuania_leader_lithuania.tga
+model_flexi_m			KCC_models_strat/lithuania_leader.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				cuman_heir
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/textures/cuman_heir_cumans.tga
+model_flexi_m			KCC_models_strat/cuman_heir.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				cuman_khan
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/textures/cuman_khan_cumans.tga
+model_flexi_m			KCC_models_strat/cuman_khan.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				georgia_king
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				georgia, KCC_models_strat/textures/georgia_king_georgia.tga
+model_flexi_m			KCC_models_strat/georgia_king.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				mongol_heir
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				mongols, KCC_models_strat/textures/mongol_heir_mongols.tga
+model_flexi_m			KCC_models_strat/mongol_heir.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				mongol_khan
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				mongols, KCC_models_strat/textures/mongol_khan_mongols.tga
+model_flexi_m			KCC_models_strat/mongol_khan.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_heir
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/textures/rus_heir_russia.tga
+texture				spain, KCC_models_strat/textures/rus_heir_spain.tga
+model_flexi_m			KCC_models_strat/rus_heir.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_knyaz
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/textures/rus_knyaz_russia.tga
+texture				spain, KCC_models_strat/textures/rus_knyaz_spain.tga
+model_flexi_m			KCC_models_strat/rus_knyaz.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byzantium_heir
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/textures/byzantium_heir_byzantium.tga
+model_flexi_m			KCC_models_strat/byzantium_heir.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byzantium_emperor
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/textures/byzantium_emperor_byzantium.tga
+model_flexi_m			KCC_models_strat/byzantium_emperor.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				byzantium_captain
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				byzantium, KCC_models_strat/textures/byzantium_captain_byzantium.tga
+model_flexi_m			KCC_models_strat/byzantium_captain.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_model_sword.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				rus_captain
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				russia, KCC_models_strat/textures/rus_captain_russia.tga
+texture				spain, KCC_models_strat/textures/rus_captain_spain.tga
+model_flexi_m			KCC_models_strat/rus_captain.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_model_sword.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				georgia_captain
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				georgia, KCC_models_strat/textures/georgia_captain_georgia.tga
+model_flexi_m			KCC_models_strat/georgia_captain.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				cuman_captain
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				cumans, KCC_models_strat/textures/cuman_captain_cumans.tga
+model_flexi_m			KCC_models_strat/cuman_captain.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				lithuania_captain
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				lithuania, KCC_models_strat/textures/lithuania_captain_lithuania.tga
+model_flexi_m			KCC_models_strat/lithuania_captain.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_model_sword.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				islamic_captain
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				abbasid, KCC_models_strat/textures/islamic_captain_abbasid.tga
+texture				egypt, KCC_models_strat/textures/islamic_captain_egypt.tga
+texture				turks, KCC_models_strat/textures/islamic_captain_turks.tga
+texture				moors, KCC_models_strat/textures/islamic_captain_moors.tga
+texture				zengid, KCC_models_strat/textures/islamic_captain_zengid.tga
+texture				rum, KCC_models_strat/textures/islamic_captain_rum.tga
+texture				mongols, KCC_models_strat/textures/islamic_captain_mongols.tga
+model_flexi_m			KCC_models_strat/islamic_captain.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				fancy_captain
+skeleton			strat_named_with_army
+scale				0.7
+indiv_range			40
+texture				venice, KCC_models_strat/textures/fancy_captain_venice.tga
+texture				sicily, KCC_models_strat/textures/fancy_captain_sicily.tga
+texture				denmark, KCC_models_strat/textures/fancy_captain_denmark.tga
+texture				scotland, KCC_models_strat/textures/fancy_captain_scotland.tga
+texture				france, KCC_models_strat/textures/fancy_captain_france.tga
+texture				hre, KCC_models_strat/textures/fancy_captain_hre.tga
+texture				england, KCC_models_strat/textures/fancy_captain_england.tga
+texture				portugal, KCC_models_strat/textures/fancy_captain_portugal.tga
+texture				poland, KCC_models_strat/textures/fancy_captain_poland.tga
+texture				hungary, KCC_models_strat/textures/fancy_captain_hungary.tga
+texture				aragon, KCC_models_strat/textures/fancy_captain_aragon.tga
+texture				kievan_rus, KCC_models_strat/textures/fancy_captain_kievan_rus.tga
+texture				serbia, KCC_models_strat/textures/fancy_captain_serbia.tga
+texture				norway, KCC_models_strat/textures/fancy_captain_norway.tga
+texture				jerusalem, KCC_models_strat/textures/fancy_captain_jerusalem.tga
+texture				pisa, KCC_models_strat/textures/fancy_captain_pisa.tga
+texture				papal_states, KCC_models_strat/textures/fancy_captain_papal_states.tga
+texture				slave, KCC_models_strat/textures/fancy_captain_slave.tga
+model_flexi_m			KCC_models_strat/fancy_captain.cas, max
+shadow_model_flexi		KCC_models_strat/shadow_sword.CAS, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				princess
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				slave, models_strat/textures/princess_slave.tga
+model_flexi_m			models_strat/princess.cas, max
+shadow_model_flexi		models_strat/shadow_model_princess.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				merchant
+skeleton			strat_merchant
+scale				0.7
+indiv_range			40
+model_flexi_m			models_strat/merchant.cas, max
+shadow_model_flexi		models_strat/shadow_model_merchant.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				priest
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				slave, models_strat/textures/priest_slave.tga
+model_flexi_m			models_strat/priest.cas, max
+shadow_model_flexi		models_strat/priest.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				bishop
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				slave, models_strat/textures/bishop_slave.tga
+model_flexi_m			models_strat/bishop.cas, max
+shadow_model_flexi		models_strat/bishop.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				cardinal
+skeleton			strat_priest
+scale				0.7
+indiv_range			40
+texture				slave, models_strat/textures/cardinal_slave.tga
+model_flexi_m			models_strat/cardinal.cas, max
+shadow_model_flexi		models_strat/cardinal.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				diplomat
+skeleton			strat_diplomat
+scale				0.7
+indiv_range			40
+texture				slave, models_strat/textures/diplomat_slave.tga
+model_flexi_m			models_strat/diplomat.cas, max
+shadow_model_flexi		models_strat/diplomat.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				spy
+skeleton			strat_spy
+scale				0.7
+indiv_range			40
+model_flexi_m			models_strat/spy.cas, max
+shadow_model_flexi		models_strat/spy.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				assassin
+skeleton			strat_assassin
+scale				0.7
+indiv_range			40
+model_flexi_m			models_strat/assassin.cas, max
+shadow_model_flexi		models_strat/assassin.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				northern_admiral
+skeleton			strat_navy
+scale				0.7
+indiv_range			40
+texture				denmark, models_strat/textures/navy_galley.tga
+texture				scotland, models_strat/textures/navy_galley.tga
+texture				turks, models_strat/textures/navy_galley.tga
+texture				france, models_strat/textures/navy_galley.tga
+texture				hre, models_strat/textures/navy_galley.tga
+texture				england, models_strat/textures/navy_galley.tga
+texture				poland, models_strat/textures/navy_galley.tga
+texture				russia, models_strat/textures/navy_galley.tga
+texture				spain, models_strat/textures/navy_galley.tga
+texture				hungary, models_strat/textures/navy_galley.tga
+texture				lithuania, models_strat/textures/navy_galley.tga
+texture				kievan_rus, models_strat/textures/navy_galley.tga
+texture				serbia, models_strat/textures/navy_galley.tga
+texture				norway, models_strat/textures/navy_galley.tga
+texture				jerusalem, models_strat/textures/navy_galley.tga
+model_flexi_m			models_strat/navy_cog.cas, max
+shadow_model_flexi		models_strat/navy_roman_shadow.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				southern_admiral
+skeleton			strat_navy
+scale				0.7
+indiv_range			40
+texture				venice, models_strat/textures/navy_galley.tga
+texture				sicily, models_strat/textures/navy_galley.tga
+texture				cumans, models_strat/textures/navy_galley.tga
+texture				portugal, models_strat/textures/navy_galley.tga
+texture				byzantium, models_strat/textures/navy_galley.tga
+texture				aragon, models_strat/textures/navy_galley.tga
+texture				georgia, models_strat/textures/navy_galley.tga
+texture				pisa, models_strat/textures/navy_galley.tga
+texture				papal_states, models_strat/textures/navy_galley.tga
+texture				slave, models_strat/textures/navy_galley.tga
+model_flexi_m			models_strat/navy_galley.cas, max
+shadow_model_flexi		models_strat/navy_roman_shadow.cas, max
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				islamic_admiral
+skeleton			strat_navy
+scale				0.7
+indiv_range			40
+texture				abbasid, models_strat/textures/navy_dhow.tga
+texture				egypt, models_strat/textures/navy_dhow.tga
+texture				moors, models_strat/textures/navy_dhow.tga
+texture				zengid, models_strat/textures/navy_dhow.tga
+texture				rum, models_strat/textures/navy_dhow.tga
+texture				mongols, models_strat/textures/navy_dhow.tga
+model_flexi_m			models_strat/navy_dhow.cas, max
+shadow_model_flexi		models_strat/navy_roman_shadow.cas, max

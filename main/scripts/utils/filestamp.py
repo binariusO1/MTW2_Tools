@@ -1,4 +1,4 @@
-from scripts.utils.constants import *
+from scripts.utils.Constants import *
 
 
 def get_separator():

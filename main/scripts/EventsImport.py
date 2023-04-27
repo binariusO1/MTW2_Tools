@@ -1,8 +1,8 @@
 import xlrd
 from scripts.utils.logger import *
-from scripts.data.Event import *
+from scripts.objects.Event import *
 from scripts.utils.read_excel import *
-from scripts.utils.constants import *
+from scripts.utils.Constants import *
 
 
 class EventsImport:

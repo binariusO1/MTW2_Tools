@@ -1,0 +1,5 @@
+type			assassin
+
+actions			moving_normal, assassinate, sabotage
+wage_base		TEXT
+starting_action_points	TEXT
