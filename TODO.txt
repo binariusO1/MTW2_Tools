@@ -1,6 +1,6 @@
 load data from:
 (factions)
-descr_character.txts
+descr_character.txt
 descr_lbc_db.txt ;just need to be always generated for new factions
 descr_offmap_models.txt ;just need to be always generated for new factions
 
@@ -33,7 +33,7 @@ as scripts:
 descr_diplomacy.xml
 
 
-no need:
+no needed:
 descr_names.txt ; just add script which export to translations
 descr_names_lookup.txt ; related with descr_names.txt (make autogenerating)
 
