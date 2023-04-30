@@ -1,7 +1,5 @@
 faction			TEXT
 dictionary		1
 strat_model		TEXT
-strat_model		TEXT
-strat_model		TEXT
 battle_model	TEXT
 battle_equip	gladius, chainmail shirt helmet and rectangular shield

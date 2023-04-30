@@ -24,7 +24,7 @@ class Character:
     def __init__(self):
         self.faction = ""
         self.model_strat = []
-        self.battle_model = ""
+        self.battle_model = []
 
     def __repr__(self):
-        return "{}".format(self.faction)
+        return "{}: {} {}".format(self.faction, self.model_strat, self.battle_model)

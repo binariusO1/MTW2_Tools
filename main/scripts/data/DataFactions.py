@@ -88,6 +88,7 @@ class DataFactions(IData):
 
     def __load_rebel_factions_data(self):
         LOG_INFO("Load rebel factions data")
+        self.__fill_rebel_factions_list(FACTIONS_DATA_INPUT, REBEL_FACTIONS_SHEET_INDEX, 1)
         LOG_WARNING("empty function")
 
     def __load_models_strat_data(self):
@@ -167,21 +168,41 @@ class DataFactions(IData):
 
         titles = get_titles_from_first_row(p_workbook_name, p_worksheet_index, p_table_characters_index)
         charactersList = []
+        iterFaction = -1
         for row in get_rows(p_workbook_name, p_worksheet_index, p_table_characters_index):
             actualFaction = ""
+            actualType = ""
             for i, title in enumerate(titles):
                 # print(row)
                 value = row[i]
+                if value == "":
+                    continue
                 if title == "faction":
                     actualFaction = value
+                    iterFaction += 1
+                    # print(actualFaction, ": ", iterFaction)
                 else:
+                    # print("title: ", title, "actualType: ", actualType)
                     for characterType in self.characterTypesList:
                         if title == characterType.character['role']:
-                            character = Character()
-                            character.faction = actualFaction
-                            # print(character.faction, ': ', title, value)
-                            character.model_strat.append(value)
-                            characterType.charactersList.append(character)
+                            if actualType != title:
+                                # print(actualFaction)
+                                character = Character()
+                                character.faction = actualFaction
+                                # print(character.faction, 'a: ', title, value, iterFaction)
+                                character.model_strat.append(value)
+                                characterType.charactersList.append(character)
+                                actualType = title
+                            else:
+                                # print(character.faction, 'p: ', title, value, iterFaction)
+                                characterType.charactersList[iterFaction].model_strat.append(value)
+                                # print(characterType.charactersList)
+                        elif title == 'named_character_battle_model' and 'named_character' == characterType.character['role']:
+                            characterType.charactersList[iterFaction].battle_model.append(value)
+                        elif title == 'general_battle_model' and 'general' == characterType.character['role']:
+                            characterType.charactersList[iterFaction].battle_model.append(value)
+
+            # iterFaction += 1
 
         self.__verify_models_strat_and_characters()
 
@@ -196,6 +217,9 @@ class DataFactions(IData):
                 # print(title)
             modelStratList.append(modelStrat)
         self.modelsStratList = modelStratList
+
+    def __fill_rebel_factions_list(self, p_workbook_name, p_worksheet_index, p_table_index):
+        pass
 
     # write
 
@@ -226,7 +250,8 @@ class DataFactions(IData):
     def __write_descr_character(self, p_creationPath):
         TEMPLATE_NAME = "descr_character.txt"
         TEMPLATE_NAME_INFO = "descr_character_INFO.txt"
-        TEMPLATE_NAME_CHARACTERS = ["descr_character_named_character.txt",
+        TEMPLATE_NAME_CHARACTERS = ["default",
+                                    "descr_character_named_character.txt",
                                     "descr_character_general.txt",
                                     "descr_character_admiral.txt",
                                     "descr_character_assassin.txt",
@@ -243,8 +268,10 @@ class DataFactions(IData):
 
         write_filestamp(file)
         write_info(file, TEMPLATE_NAME_INFO)
-        for templateName in TEMPLATE_NAME_CHARACTERS:
-            self.__write_descr_character_data(file, templateName)
+        self.__write_starting_action_points(file)
+        assert len(TEMPLATE_NAME_CHARACTERS) == len(self.characterTypesList), "len TEMPLATE_NAME_CHARACTERS are not equal to len self.characterTypesList"
+        for i, templateNameCharacter in enumerate(TEMPLATE_NAME_CHARACTERS[1:len(TEMPLATE_NAME_CHARACTERS)]):
+            self.__write_descr_character_data(file, TEMPLATE_NAME, templateNameCharacter, self.characterTypesList[i+1])
 
         file.close()
 
@@ -340,9 +367,51 @@ class DataFactions(IData):
                     newLine1 = newLine.replace("MODEL", mType.model_strat['shadow_model_flexi'])
                     file.write(newLine1)
 
-    def __write_descr_character_data(self, file, p_template_name):
+    def __write_starting_action_points(self, file):
+        file.write(get_separator() + '\n')
+        line = "starting_action_points	" + str(int(self.characterTypesList[0].character['starting_action_points'])) +  "	; default value for all characters and pathfinding calculations"
+        file.write(line)
 
-        LOG_DEBUG("empty")
+    def __write_descr_character_data(self, file, p_template_name_common, p_template_name_per_character_type, p_characterType):
+        # print(p_characterType.character['role'])
+        templateCharacterType = get_empty_template(p_template_name_per_character_type)
+        file.write('\n\n')
+        file.write(get_separator() + '\n')
+
+        for line in templateCharacterType:
+            all_words = line.split()
+            if len(all_words) > 0:
+                lineTitle = all_words[0]
+
+                if lineTitle == "wage_base":
+                    file.write(line.replace("TEXT", str(int(p_characterType.character['wage_base']))))
+                elif lineTitle == "starting_action_points":
+                    file.write(line.replace("TEXT", str(int(p_characterType.character['starting_action_points']))+'\n'))
+                else:
+                    file.write(line)
+            else:
+                file.write(line)
+
+        templateCharacterType = get_empty_template(p_template_name_common)
+        for character in p_characterType.charactersList:
+            file.write('\n')
+            # print(" ", character.faction, ": ")
+            for line in templateCharacterType:
+                all_words = line.split()
+                if len(all_words) > 0:
+                    lineTitle = all_words[0]
+                    if lineTitle == "faction":
+                        file.write(line.replace("TEXT", character.faction))
+                    if lineTitle == "dictionary":
+                        file.write(line.replace("TEXT", str(int(1))))
+                    if lineTitle == "strat_model":
+                        for model in character.model_strat:
+                            file.write(line.replace("TEXT", model))
+                    if lineTitle == "battle_model" and not character.battle_model == []:
+                        for model in character.battle_model:
+                            file.write(line.replace("TEXT", model))
+                    if lineTitle == 'battle_equip' and not character.battle_model == []:
+                        file.write(line+'\n')
 
     def __verify_models_strat_and_characters(self):
         modelStratListToCheck = []

@@ -1,0 +1,2 @@
+; SS6.4 descr_character edited by gracul: Jan-2011
+; SSHIP v0.9.6. - modified by Lifthrasir April 2019

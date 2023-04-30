@@ -4,4 +4,1500 @@
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; SS6.4 descr_character edited by gracul: Jan-2011
+; SSHIP v0.9.6. - modified by Lifthrasir April 2019
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+starting_action_points	170	; default value for all characters and pathfinding calculations
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			named character
+
+actions			moving_normal, moving_quickmarch, garrison, assault, attack, besiege, entrench, ambush, diplomacy, bribe, exchange, building_fort, building_watchtower
+wage_base		200
+starting_action_points	170
+
+faction			venice
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			sicily
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			abbasid
+dictionary		1
+strat_model		middle_eastern_sultan
+strat_model		middle_eastern_sultan
+strat_model		islamic_general
+battle_model	muslim_general_1
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			denmark
+dictionary		1
+strat_model		northern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			egypt
+dictionary		1
+strat_model		middle_eastern_sultan
+strat_model		middle_eastern_sultan
+strat_model		islamic_general
+battle_model	muslim_general_1
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			scotland
+dictionary		1
+strat_model		northern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			cumans
+dictionary		1
+strat_model		cuman_general
+strat_model		cuman_heir
+strat_model		cuman_khan
+battle_model	Aztec_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			turks
+dictionary		1
+strat_model		islamic_general
+strat_model		middle_eastern_sultan
+strat_model		middle_eastern_sultan
+battle_model	turkish_general
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			france
+dictionary		1
+strat_model		northern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			hre
+dictionary		1
+strat_model		northern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			england
+dictionary		1
+strat_model		northern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			portugal
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			poland
+dictionary		1
+strat_model		northern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			byzantium
+dictionary		1
+strat_model		byzantium_heir
+strat_model		byzantium_emperor
+strat_model		byzantium_general
+battle_model	byzantine_general
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			moors
+dictionary		1
+strat_model		middle_eastern_sultan
+strat_model		middle_eastern_sultan
+strat_model		islamic_general
+battle_model	muslim_general_2
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			russia
+dictionary		1
+strat_model		rus_general
+strat_model		rus_heir
+strat_model		rus_knyaz
+battle_model	andronicus
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			spain
+dictionary		1
+strat_model		rus_general
+strat_model		rus_heir
+strat_model		rus_knyaz
+battle_model	andronicus
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			hungary
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			aragon
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			lithuania
+dictionary		1
+strat_model		lithuania_general
+strat_model		lithuania_heir
+strat_model		lithuania_leader
+battle_model	Aztec_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			kievan_rus
+dictionary		1
+strat_model		northern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			serbia
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			georgia
+dictionary		1
+strat_model		aztec_general
+strat_model		georgia_general
+strat_model		georgia_king
+battle_model	Georgian_general
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			norway
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			jerusalem
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			zengid
+dictionary		1
+strat_model		middle_eastern_sultan
+strat_model		middle_eastern_sultan
+strat_model		islamic_general
+battle_model	muslim_general_3
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			rum
+dictionary		1
+strat_model		islamic_general
+strat_model		middle_eastern_sultan
+strat_model		middle_eastern_sultan
+battle_model	turkish_general
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			pisa
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			papal_states
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		pope
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			mongols
+dictionary		1
+strat_model		mongol_heir
+strat_model		mongol_khan
+strat_model		mongol_general
+battle_model	mongol_general
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			slave
+dictionary		1
+strat_model		southern_general
+strat_model		fancy_general
+strat_model		northern_generic_king
+battle_model	Northern_General
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			general
+
+actions	moving_normal, moving_quickmarch, garrison, assault, attack, besiege, entrench, ambush, exchange
+wage_base		0
+starting_action_points	170
+
+faction			venice
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			sicily
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			abbasid
+dictionary		1
+strat_model		islamic_captain
+battle_model	Ayyubid_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			denmark
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			egypt
+dictionary		1
+strat_model		islamic_captain
+battle_model	Ayyubid_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			scotland
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			cumans
+dictionary		1
+strat_model		cuman_captain
+battle_model	Teutonic_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			turks
+dictionary		1
+strat_model		islamic_captain
+battle_model	Seljuks_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			france
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			hre
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			england
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			portugal
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			poland
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			byzantium
+dictionary		1
+strat_model		byzantium_captain
+battle_model	byzantine_captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			moors
+dictionary		1
+strat_model		islamic_captain
+battle_model	muslim_captain_1
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			russia
+dictionary		1
+strat_model		rus_captain
+battle_model	Teutonic_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			spain
+dictionary		1
+strat_model		rus_captain
+battle_model	Teutonic_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			hungary
+dictionary		1
+strat_model		fancy_captain
+battle_model	Teutonic_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			aragon
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			lithuania
+dictionary		1
+strat_model		lithuania_captain
+battle_model	Teutonic_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			kievan_rus
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			serbia
+dictionary		1
+strat_model		fancy_captain
+battle_model	Teutonic_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			georgia
+dictionary		1
+strat_model		georgia_captain
+battle_model	Georgian_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			norway
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			jerusalem
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			zengid
+dictionary		1
+strat_model		islamic_captain
+battle_model	muslim_Captain_1
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			rum
+dictionary		1
+strat_model		islamic_captain
+battle_model	Seljuks_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			pisa
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			papal_states
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			mongols
+dictionary		1
+strat_model		islamic_captain
+battle_model	mongol_captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+faction			slave
+dictionary		1
+strat_model		fancy_captain
+battle_model	Fancy_Captain
+battle_equip	gladius, chainmail shirt helmet and rectangular shield
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			admiral
+
+actions			moving_normal, quick_sail, blockade, disembark, exchange
+wage_base		100
+starting_action_points	275
+
+faction			venice
+dictionary		1
+strat_model		southern_spy
+
+faction			sicily
+dictionary		1
+strat_model		southern_spy
+
+faction			abbasid
+dictionary		1
+strat_model		mus_spy
+
+faction			denmark
+dictionary		1
+strat_model		northern_spy
+
+faction			egypt
+dictionary		1
+strat_model		islamic_spy
+
+faction			scotland
+dictionary		1
+strat_model		northern_spy
+
+faction			cumans
+dictionary		1
+strat_model		nom_spy
+
+faction			turks
+dictionary		1
+strat_model		mus_spy
+
+faction			france
+dictionary		1
+strat_model		northern_spy
+
+faction			hre
+dictionary		1
+strat_model		northern_spy
+
+faction			england
+dictionary		1
+strat_model		northern_spy
+
+faction			portugal
+dictionary		1
+strat_model		southern_spy
+
+faction			poland
+dictionary		1
+strat_model		northern_spy
+
+faction			byzantium
+dictionary		1
+strat_model		byz_spy
+
+faction			moors
+dictionary		1
+strat_model		mus_spy
+
+faction			russia
+dictionary		1
+strat_model		rus_spy
+
+faction			spain
+dictionary		1
+strat_model		southern_spy
+
+faction			hungary
+dictionary		1
+strat_model		northern_spy
+
+faction			aragon
+dictionary		1
+strat_model		southern_spy
+
+faction			lithuania
+dictionary		1
+strat_model		northern_spy
+
+faction			kievan_rus
+dictionary		1
+strat_model		rus_spy
+
+faction			serbia
+dictionary		1
+strat_model		northern_spy
+
+faction			georgia
+dictionary		1
+strat_model		byz_spy
+
+faction			norway
+dictionary		1
+strat_model		northern_spy
+
+faction			jerusalem
+dictionary		1
+strat_model		northern_spy
+
+faction			zengid
+dictionary		1
+strat_model		mus_spy
+
+faction			rum
+dictionary		1
+strat_model		mus_spy
+
+faction			pisa
+dictionary		1
+strat_model		southern_spy
+
+faction			papal_states
+dictionary		1
+strat_model		southern_spy
+
+faction			mongols
+dictionary		1
+strat_model		islamic_spy
+
+faction			slave
+dictionary		1
+strat_model		southern_spy
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			assassin
+
+actions			moving_normal, assassinate, sabotage
+wage_base		200
+starting_action_points	250
+
+faction			venice
+dictionary		1
+strat_model		southern_assassin
+
+faction			sicily
+dictionary		1
+strat_model		southern_assassin
+
+faction			abbasid
+dictionary		1
+strat_model		mus_assassin
+
+faction			denmark
+dictionary		1
+strat_model		northern_assassin
+
+faction			egypt
+dictionary		1
+strat_model		mus_assassin
+
+faction			scotland
+dictionary		1
+strat_model		northern_assassin
+
+faction			cumans
+dictionary		1
+strat_model		nom_assassin
+
+faction			turks
+dictionary		1
+strat_model		mus_assassin
+
+faction			france
+dictionary		1
+strat_model		northern_assassin
+
+faction			hre
+dictionary		1
+strat_model		northern_assassin
+
+faction			england
+dictionary		1
+strat_model		northern_assassin
+
+faction			portugal
+dictionary		1
+strat_model		southern_assassin
+
+faction			poland
+dictionary		1
+strat_model		northern_assassin
+
+faction			byzantium
+dictionary		1
+strat_model		byz_assassin
+
+faction			moors
+dictionary		1
+strat_model		mus_assassin
+
+faction			russia
+dictionary		1
+strat_model		northern_assassin
+
+faction			spain
+dictionary		1
+strat_model		southern_assassin
+
+faction			hungary
+dictionary		1
+strat_model		northern_assassin
+
+faction			aragon
+dictionary		1
+strat_model		southern_assassin
+
+faction			lithuania
+dictionary		1
+strat_model		northern_assassin
+
+faction			kievan_rus
+dictionary		1
+strat_model		northern_assassin
+
+faction			serbia
+dictionary		1
+strat_model		northern_assassin
+
+faction			georgia
+dictionary		1
+strat_model		islamic_assassin
+
+faction			norway
+dictionary		1
+strat_model		northern_assassin
+
+faction			jerusalem
+dictionary		1
+strat_model		northern_assassin
+
+faction			zengid
+dictionary		1
+strat_model		mus_assassin
+
+faction			rum
+dictionary		1
+strat_model		mus_assassin
+
+faction			pisa
+dictionary		1
+strat_model		southern_assassin
+
+faction			papal_states
+dictionary		1
+strat_model		southern_assassin
+
+faction			mongols
+dictionary		1
+strat_model		islamic_assassin
+
+faction			slave
+dictionary		1
+strat_model		southern_assassin
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			diplomat
+
+actions			moving_normal, diplomacy, bribe
+wage_base		50
+starting_action_points	200
+
+faction			venice
+dictionary		1
+strat_model		southern_ambassador
+
+faction			sicily
+dictionary		1
+strat_model		euro_diplomat
+
+faction			abbasid
+dictionary		1
+strat_model		mus_diplomat
+
+faction			denmark
+dictionary		1
+strat_model		euro_diplomat
+
+faction			egypt
+dictionary		1
+strat_model		mus_diplomat
+
+faction			scotland
+dictionary		1
+strat_model		euro_diplomat
+
+faction			cumans
+dictionary		1
+strat_model		nom_diplomat
+
+faction			turks
+dictionary		1
+strat_model		mus_diplomat
+
+faction			france
+dictionary		1
+strat_model		euro_diplomat
+
+faction			hre
+dictionary		1
+strat_model		euro_diplomat
+
+faction			england
+dictionary		1
+strat_model		euro_diplomat
+
+faction			portugal
+dictionary		1
+strat_model		euro_diplomat
+
+faction			poland
+dictionary		1
+strat_model		euro_diplomat
+
+faction			byzantium
+dictionary		1
+strat_model		byz_diplomat
+
+faction			moors
+dictionary		1
+strat_model		mus_diplomat
+
+faction			russia
+dictionary		1
+strat_model		rus_diplomat
+
+faction			spain
+dictionary		1
+strat_model		euro_diplomat
+
+faction			hungary
+dictionary		1
+strat_model		euro_diplomat
+
+faction			aragon
+dictionary		1
+strat_model		euro_diplomat
+
+faction			lithuania
+dictionary		1
+strat_model		euro_diplomat
+
+faction			kievan_rus
+dictionary		1
+strat_model		rus_diplomat
+
+faction			serbia
+dictionary		1
+strat_model		euro_diplomat
+
+faction			georgia
+dictionary		1
+strat_model		byz_diplomat
+
+faction			norway
+dictionary		1
+strat_model		euro_diplomat
+
+faction			jerusalem
+dictionary		1
+strat_model		euro_diplomat
+
+faction			zengid
+dictionary		1
+strat_model		mus_diplomat
+
+faction			rum
+dictionary		1
+strat_model		mus_diplomat
+
+faction			pisa
+dictionary		1
+strat_model		euro_diplomat
+
+faction			papal_states
+dictionary		1
+strat_model		southern_ambassador
+
+faction			mongols
+dictionary		1
+strat_model		nom_diplomat
+
+faction			slave
+dictionary		1
+strat_model		diplomat
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			merchant
+
+actions			moving_normal, acquire
+wage_base		50
+starting_action_points	250
+
+faction			venice
+dictionary		1
+strat_model		southern_admiral
+
+faction			sicily
+dictionary		1
+strat_model		southern_admiral
+
+faction			abbasid
+dictionary		1
+strat_model		islamic_admiral
+
+faction			denmark
+dictionary		1
+strat_model		northern_admiral
+
+faction			egypt
+dictionary		1
+strat_model		islamic_admiral
+
+faction			scotland
+dictionary		1
+strat_model		northern_admiral
+
+faction			cumans
+dictionary		1
+strat_model		southern_admiral
+
+faction			turks
+dictionary		1
+strat_model		northern_admiral
+
+faction			france
+dictionary		1
+strat_model		northern_admiral
+
+faction			hre
+dictionary		1
+strat_model		northern_admiral
+
+faction			england
+dictionary		1
+strat_model		northern_admiral
+
+faction			portugal
+dictionary		1
+strat_model		southern_admiral
+
+faction			poland
+dictionary		1
+strat_model		northern_admiral
+
+faction			byzantium
+dictionary		1
+strat_model		southern_admiral
+
+faction			moors
+dictionary		1
+strat_model		islamic_admiral
+
+faction			russia
+dictionary		1
+strat_model		northern_admiral
+
+faction			spain
+dictionary		1
+strat_model		northern_admiral
+
+faction			hungary
+dictionary		1
+strat_model		northern_admiral
+
+faction			aragon
+dictionary		1
+strat_model		southern_admiral
+
+faction			lithuania
+dictionary		1
+strat_model		northern_admiral
+
+faction			kievan_rus
+dictionary		1
+strat_model		northern_admiral
+
+faction			serbia
+dictionary		1
+strat_model		northern_admiral
+
+faction			georgia
+dictionary		1
+strat_model		southern_admiral
+
+faction			norway
+dictionary		1
+strat_model		northern_admiral
+
+faction			jerusalem
+dictionary		1
+strat_model		northern_admiral
+
+faction			zengid
+dictionary		1
+strat_model		islamic_admiral
+
+faction			rum
+dictionary		1
+strat_model		islamic_admiral
+
+faction			pisa
+dictionary		1
+strat_model		southern_admiral
+
+faction			papal_states
+dictionary		1
+strat_model		southern_admiral
+
+faction			mongols
+dictionary		1
+strat_model		islamic_admiral
+
+faction			slave
+dictionary		1
+strat_model		southern_admiral
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			priest
+
+actions			moving_normal, denounce
+wage_base		150
+starting_action_points	120
+
+faction			venice
+dictionary		1
+strat_model		euro_princess
+
+faction			sicily
+dictionary		1
+strat_model		euro_princess
+
+faction			abbasid
+dictionary		1
+strat_model		northern_princess
+
+faction			denmark
+dictionary		1
+strat_model		euro_princess
+
+faction			egypt
+dictionary		1
+strat_model		northern_princess
+
+faction			scotland
+dictionary		1
+strat_model		euro_princess
+
+faction			cumans
+dictionary		1
+strat_model		northern_princess
+
+faction			turks
+dictionary		1
+strat_model		northern_princess
+
+faction			france
+dictionary		1
+strat_model		euro_princess
+
+faction			hre
+dictionary		1
+strat_model		euro_princess
+
+faction			england
+dictionary		1
+strat_model		euro_princess
+
+faction			portugal
+dictionary		1
+strat_model		euro_princess
+
+faction			poland
+dictionary		1
+strat_model		euro_princess
+
+faction			byzantium
+dictionary		1
+strat_model		byz_princess
+
+faction			moors
+dictionary		1
+strat_model		northern_princess
+
+faction			russia
+dictionary		1
+strat_model		rus_princess
+
+faction			spain
+dictionary		1
+strat_model		euro_princess
+
+faction			hungary
+dictionary		1
+strat_model		euro_princess
+
+faction			aragon
+dictionary		1
+strat_model		euro_princess
+
+faction			lithuania
+dictionary		1
+strat_model		euro_princess
+
+faction			kievan_rus
+dictionary		1
+strat_model		rus_princess
+
+faction			serbia
+dictionary		1
+strat_model		euro_princess
+
+faction			georgia
+dictionary		1
+strat_model		euro_princess
+
+faction			norway
+dictionary		1
+strat_model		euro_princess
+
+faction			jerusalem
+dictionary		1
+strat_model		euro_princess
+
+faction			zengid
+dictionary		1
+strat_model		northern_princess
+
+faction			rum
+dictionary		1
+strat_model		northern_princess
+
+faction			pisa
+dictionary		1
+strat_model		euro_princess
+
+faction			papal_states
+dictionary		1
+strat_model		southern_princess
+
+faction			mongols
+dictionary		1
+strat_model		northern_princess
+
+faction			slave
+dictionary		1
+strat_model		princess
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			princess
+
+actions			moving_normal, diplomacy, bribe, marry
+wage_base		0
+starting_action_points	160
+
+faction			venice
+dictionary		1
+strat_model		byz_merchant
+
+faction			sicily
+dictionary		1
+strat_model		euro_merchant
+
+faction			abbasid
+dictionary		1
+strat_model		mus_merchant
+
+faction			denmark
+dictionary		1
+strat_model		euro_merchant
+
+faction			egypt
+dictionary		1
+strat_model		mus_merchant
+
+faction			scotland
+dictionary		1
+strat_model		euro_merchant
+
+faction			cumans
+dictionary		1
+strat_model		mus_merchant
+
+faction			turks
+dictionary		1
+strat_model		mus_merchant
+
+faction			france
+dictionary		1
+strat_model		euro_merchant
+
+faction			hre
+dictionary		1
+strat_model		euro_merchant
+
+faction			england
+dictionary		1
+strat_model		euro_merchant
+
+faction			portugal
+dictionary		1
+strat_model		euro_merchant
+
+faction			poland
+dictionary		1
+strat_model		euro_merchant
+
+faction			byzantium
+dictionary		1
+strat_model		byz_merchant
+
+faction			moors
+dictionary		1
+strat_model		mus_merchant
+
+faction			russia
+dictionary		1
+strat_model		rus_merchant
+
+faction			spain
+dictionary		1
+strat_model		euro_merchant
+
+faction			hungary
+dictionary		1
+strat_model		euro_merchant
+
+faction			aragon
+dictionary		1
+strat_model		euro_merchant
+
+faction			lithuania
+dictionary		1
+strat_model		euro_merchant
+
+faction			kievan_rus
+dictionary		1
+strat_model		rus_merchant
+
+faction			serbia
+dictionary		1
+strat_model		euro_merchant
+
+faction			georgia
+dictionary		1
+strat_model		byz_merchant
+
+faction			norway
+dictionary		1
+strat_model		euro_merchant
+
+faction			jerusalem
+dictionary		1
+strat_model		euro_merchant
+
+faction			zengid
+dictionary		1
+strat_model		mus_merchant
+
+faction			rum
+dictionary		1
+strat_model		mus_merchant
+
+faction			pisa
+dictionary		1
+strat_model		byz_merchant
+
+faction			papal_states
+dictionary		1
+strat_model		byz_merchant
+
+faction			mongols
+dictionary		1
+strat_model		islamic_merchant
+
+faction			slave
+dictionary		1
+strat_model		euro_merchant
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			spy
+
+actions			moving_normal, spying
+wage_base		80
+starting_action_points	225
+
+faction			venice
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			sicily
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			abbasid
+dictionary		1
+strat_model		muslim_iman
+strat_model		muslim_iman
+strat_model		muslim_iman
+
+faction			denmark
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			egypt
+dictionary		1
+strat_model		muslim_iman
+strat_model		muslim_iman
+strat_model		muslim_iman
+
+faction			scotland
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			cumans
+dictionary		1
+strat_model		nom_priest
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_high_priest
+
+faction			turks
+dictionary		1
+strat_model		muslim_iman
+strat_model		muslim_iman
+strat_model		muslim_iman
+
+faction			france
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			hre
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			england
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			portugal
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			poland
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			byzantium
+dictionary		1
+strat_model		orthodox_priest
+strat_model		orthodox_bishop
+strat_model		orthodox_bishop
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+
+faction			moors
+dictionary		1
+strat_model		muslim_iman
+strat_model		muslim_iman
+strat_model		muslim_iman
+
+faction			russia
+dictionary		1
+strat_model		rus_priest
+strat_model		rus_bishop
+strat_model		orthodox_bishop
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+
+faction			spain
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			hungary
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			aragon
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			lithuania
+dictionary		1
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_high_priest
+
+faction			kievan_rus
+dictionary		1
+strat_model		rus_priest
+strat_model		rus_bishop
+strat_model		orthodox_bishop
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+
+faction			serbia
+dictionary		1
+strat_model		rus_priest
+strat_model		rus_bishop
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+
+faction			georgia
+dictionary		1
+strat_model		rus_priest
+strat_model		rus_bishop
+strat_model		orthodox_bishop
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+strat_model		orthodox_patriarch
+
+faction			norway
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			jerusalem
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			zengid
+dictionary		1
+strat_model		muslim_iman
+strat_model		muslim_iman
+strat_model		muslim_iman
+
+faction			rum
+dictionary		1
+strat_model		muslim_iman
+strat_model		muslim_iman
+strat_model		muslim_iman
+
+faction			pisa
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			papal_states
+dictionary		1
+strat_model		catholic_priest
+strat_model		catholic_bishop
+strat_model		catholic_cardinal
+
+faction			mongols
+dictionary		1
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_priest
+strat_model		pagan_high_priest
+
+faction			slave
+dictionary		1
+strat_model		priest
+strat_model		bishop
+strat_model		cardinal
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			heretic
+
+actions			moving_normal
+wage_base		0
+starting_action_points	130
+
+faction			slave
+dictionary		1
+strat_model		heretic
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			witch
+
+actions			moving_normal
+wage_base		0
+starting_action_points	50
+
+faction			slave
+dictionary		1
+strat_model		witch
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type			inquisitor
+
+actions			moving_normal, denounce
+wage_base		0
+starting_action_points	150
+
+faction			papal_states
+dictionary		1
+strat_model		inquisitor
